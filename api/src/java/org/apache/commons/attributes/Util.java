@@ -74,18 +74,18 @@ class Util {
         return sb.toString ();
     }
     
-    public static void checkTarget (int target, Object attribute, String element) {
+    private static void checkTarget (int target, Object attribute, String element) {
         Target targetAttr = (Target) Attributes.getAttribute (attribute.getClass (), Target.class);
         if (targetAttr == null) {
             return;
-        }
+        }        
         
         if ((targetAttr.getFlags () & target) == 0) {
             throw new InvalidAttributeTargetError (attribute.getClass ().getName (), element, targetAttr.getFlags ());
         }
     }
     
-    public static void checkTarget (int target, Set attributes, String element) {
+    private static void checkTargets (int target, Collection attributes, String element) {
         Iterator iter = attributes.iterator ();
         while (iter.hasNext ()) {
             checkTarget (target, iter.next (), element);
@@ -93,12 +93,13 @@ class Util {
     }
     
     public static void validateRepository (Class owningClass, AttributeRepositoryClass repo) {
-        checkTarget (Target.CLASS, repo.getClassAttributes (), owningClass.getName ());
+        checkTargets (Target.CLASS, repo.getClassAttributes (), owningClass.getName ());
         
         Map fieldAttrs = repo.getFieldAttributes ();
         for (Iterator iter = fieldAttrs.keySet ().iterator(); iter.hasNext ();) {
             String fieldName = (String) iter.next ();
-            checkTarget (Target.FIELD, (Collection) fieldAttrs.get (fieldName), owningClass.getName () + "." + fieldName);
+            
+            checkTargets (Target.FIELD, (Collection) fieldAttrs.get (fieldName), owningClass.getName () + "." + fieldName);
         }
         
         Map ctorAttrs = repo.getConstructorAttributes ();
@@ -109,11 +110,11 @@ class Util {
             for (int i = 0; i < bundle.size (); i++) {
                 switch (i) {
                 case 0: 
-                    checkTarget (Target.CONSTRUCTOR, (Collection) bundle.get (0), owningClass.getName () + "." + ctorName);
+                    checkTargets (Target.CONSTRUCTOR, (Collection) bundle.get (0), owningClass.getName () + "." + ctorName);
                     break;
                     
                 default:
-                    checkTarget (Target.CONSTRUCTOR_PARAMETER, (Collection) bundle.get (i), "parameter " + (i) + " of " + owningClass.getName () + ctorName);
+                    checkTargets (Target.CONSTRUCTOR_PARAMETER, (Collection) bundle.get (i), "parameter " + (i) + " of " + owningClass.getName () + ctorName);
                 }
             }
         }
@@ -126,15 +127,15 @@ class Util {
             for (int i = 0; i < bundle.size (); i++) {
                 switch (i) {
                 case 0: 
-                    checkTarget (Target.METHOD, (Collection) bundle.get (0), owningClass.getName () + "." + methodName);
+                    checkTargets (Target.METHOD, (Collection) bundle.get (0), owningClass.getName () + "." + methodName);
                     break;
                     
                 case 1:
-                    checkTarget (Target.RETURN, (Collection) bundle.get (1), "return value of " + owningClass.getName () + "." + methodName);
+                    checkTargets (Target.RETURN, (Collection) bundle.get (1), "return value of " + owningClass.getName () + "." + methodName);
                     break;
                     
                 default:
-                    checkTarget (Target.METHOD_PARAMETER, (Collection) bundle.get (i), "parameter " + (i - 1) + " of " + owningClass.getName () + "." + methodName);
+                    checkTargets (Target.METHOD_PARAMETER, (Collection) bundle.get (i), "parameter " + (i - 1) + " of " + owningClass.getName () + "." + methodName);
                 }
             }
         }
