@@ -24,6 +24,23 @@
     </properties>
     
     <body>
+        <section name="2004-06-06">
+            <ul>
+                <li>
+                    <p>
+                        Fixed bug in compiler that made it impossible to add
+                        attributes to a method that took a parameter whose type 
+                        was an inner class.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Bumped version number to 2.1.
+                    </p>
+                </li>
+            </ul>
+        </section>
+
         <section name="2004-05-04">
             <ul>
                 <li>
