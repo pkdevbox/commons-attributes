@@ -34,7 +34,7 @@
     <!-- ================================================================== -->
     <postGoal name="xdoc:copy-resources">  
         <copy todir="${basedir}/target/docs/style/" failonerror="false">
-            <fileset dir="${basedir}/../commons-build/xdocs/style">
+            <fileset dir="${basedir}/../../commons-build/xdocs/style">
                 <include name='**/*'/>
                 <exclude name='**/CVS/**'/>
             </fileset>
