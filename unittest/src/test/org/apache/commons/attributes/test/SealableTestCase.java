@@ -25,29 +25,54 @@ import java.util.Collection;
 import java.util.Iterator;
 import org.apache.commons.attributes.Attributes;
 import org.apache.commons.attributes.AttributeIndex;
+import org.apache.commons.attributes.DefaultSealable;
 import org.apache.commons.attributes.SealedAttributeException;
 import junit.framework.TestCase;
 
 public class SealableTestCase extends TestCase {
     
+    /**
+     * A sample attribute with bean-like properties. Used to test the 
+     * named parameter syntax.
+     */
+    public static class SampleSealableAttribute extends DefaultSealable {
+        
+        private int number;
+        
+        public SampleSealableAttribute () {
+        }
+        
+        public int getNumber () {
+            return number;
+        }
+        
+        public void setNumber (int number) {
+            checkSealed ();
+            this.number = number;
+        }
+    }
+    
+    /** @@SealableTestCase.SampleSealableAttribute (number=1) */
+    public static class ClassWithSealable {}
+    
     public void testSealable () throws Exception {
-        Method m = Sample.class.getMethod ("methodWithNamedParameters", new Class[]{ });
-        BeanAttribute attribute = (BeanAttribute) Attributes.getAttributes (m, BeanAttribute.class).iterator ().next ();
+        SampleSealableAttribute attribute = (SampleSealableAttribute) Attributes.getAttribute (ClassWithSealable.class, SampleSealableAttribute.class);
         
         try {
-            attribute.setName ("Joe Doe");
+            attribute.setNumber (11);
             fail ("Attribute should be sealed!");
         } catch (IllegalStateException ise) {
             // -- OK, attribute should be sealed.
         }
+        
+        assertEquals (1, attribute.getNumber ());
     }
     
     public void testSealableExceptionType () throws Exception {
-        Method m = Sample.class.getMethod ("methodWithNamedParameters", new Class[]{ });
-        BeanAttribute attribute = (BeanAttribute) Attributes.getAttributes (m, BeanAttribute.class).iterator ().next ();
+        SampleSealableAttribute attribute = (SampleSealableAttribute) Attributes.getAttribute (ClassWithSealable.class, SampleSealableAttribute.class);
         
         try {
-            attribute.setName ("Joe Doe");
+            attribute.setNumber (11);
             fail ("Attribute should be sealed!");
         } catch (SealedAttributeException ise) {
             // -- OK, attribute should be sealed and throw a SealedAttributeException.

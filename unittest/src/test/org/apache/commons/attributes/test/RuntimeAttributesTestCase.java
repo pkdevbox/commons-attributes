@@ -25,6 +25,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import org.apache.commons.attributes.Attributes;
 import org.apache.commons.attributes.AttributeIndex;
+import org.apache.commons.attributes.test.samples.RuntimeSample;
+import org.apache.commons.attributes.test.samples.Sample;
 import junit.framework.TestCase;
 
 public class RuntimeAttributesTestCase extends TestCase {
