@@ -43,13 +43,13 @@
             
             <ul>
                 <li>
-                    <p>Client API: <a href="http://cvs.apache.org/~leosutic/commons-attributes-api-SNAPSHOT.jar">commons-attributes-api-SNAPSHOT.jar</a></p>
+                    <p>Client API: <a href="http://cvs.apache.org/~leosutic/commons-attributes-api-2.1.jar">commons-attributes-api-2.1.jar</a></p>
                     <p>
                         <i>It is important that you do not rename this file - it is referred to by name in the example build.xml.</i>
                     </p>
                 </li>
                 <li>
-                    <p>Ant task: <a href="http://cvs.apache.org/~leosutic/commons-attributes-compiler-SNAPSHOT.jar">commons-attributes-compiler-SNAPSHOT.jar</a></p>
+                    <p>Ant task: <a href="http://cvs.apache.org/~leosutic/commons-attributes-compiler-2.1.jar">commons-attributes-compiler-2.1.jar</a></p>
                     <p>
                         <i>It is important that you do not rename this file - it is referred to by name in the example build.xml.</i>
                     </p>
@@ -267,18 +267,18 @@ public class AttributeDemo {]]></source>
             destdir="${basedir}" 
             deprecation="true" 
             debug="true" 
-            classpath="${ant.home}/lib/commons-attributes-api-SNAPSHOT.jar;."
+            classpath="${ant.home}/lib/commons-attributes-api-2.1.jar;."
             optimize="false">
         </javac>
     </target>]]></source>
                 
                 <p>
-                    Since we use attributes, we have to include the commons-attributes-api-SNAPSHOT.jar file in the classpath.
+                    Since we use attributes, we have to include the commons-attributes-api-2.1.jar file in the classpath.
                 </p>
                 
                 <source><![CDATA[    <target name="run" description="o Compile and run the demo" depends="compile">
         <java 
-            classpath="${ant.home}/lib/commons-attributes-api-SNAPSHOT.jar;."
+            classpath="${ant.home}/lib/commons-attributes-api-2.1.jar;."
             classname="AttributeDemo"/>
     </target>]]></source>
                 
@@ -294,7 +294,7 @@ public class AttributeDemo {]]></source>
             additionalparam="-J-Dorg.apache.commons.attributes.javadoc.CATaglet.sources=${basedir}">
             <taglet
                 name="org.apache.commons.attributes.javadoc.CATaglet"
-                path="${ant.home}/lib/commons-attributes-compiler-SNAPSHOT.jar"
+                path="${ant.home}/lib/commons-attributes-compiler-2.1.jar"
              />
             <fileset dir="${basedir}/" includes="**/*.java" />
         </javadoc>

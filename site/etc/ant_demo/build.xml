@@ -39,14 +39,14 @@
             destdir="${basedir}" 
             deprecation="true" 
             debug="true" 
-            classpath="${ant.home}/lib/commons-attributes-api-SNAPSHOT.jar;."
+            classpath="${ant.home}/lib/commons-attributes-api-2.1.jar;."
             optimize="false">
         </javac>
     </target>
     
     <target name="run" description="o Compile and run the demo" depends="compile">
         <java 
-            classpath="${ant.home}/lib/commons-attributes-api-SNAPSHOT.jar;."
+            classpath="${ant.home}/lib/commons-attributes-api-2.1.jar;."
             classname="AttributeDemo"/>
     </target>
     
@@ -57,7 +57,7 @@
             additionalparam="-J-Dorg.apache.commons.attributes.javadoc.CATaglet.sources=${basedir}">
             <taglet
                 name="org.apache.commons.attributes.javadoc.CATaglet"
-                path="${ant.home}/lib/commons-attributes-compiler-SNAPSHOT.jar"
+                path="${ant.home}/lib/commons-attributes-compiler-2.1.jar"
                 />
             <fileset dir="${basedir}/" includes="**/*.java" />
         </javadoc>

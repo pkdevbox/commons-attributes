@@ -38,6 +38,11 @@
 
         <section name="News">
             <p>Please see the <a href="changelog.html">change log</a> for summaries of code changes.</p>
+
+            <p><b>2004-08-15</b></p>
+            <ul>
+                <li><p>Attributes 2.1 released!</p></li>
+            </ul>
  
             <p><b>2004-07-12</b></p>
             <ul>
@@ -54,10 +59,10 @@
                 
                 <ul>
                     <li>
-                        <p>Client API: <a href="http://cvs.apache.org/~leosutic/commons-attributes-api-SNAPSHOT.jar">commons-attributes-api-SNAPSHOT.jar</a></p>
+                        <p>Client API: <a href="http://www.ibiblio.org/maven/commons-attributes/jars/commons-attributes-api-2.1.jar">commons-attributes-api-2.1.jar</a></p>
                     </li>
                     <li>
-                        <p>Ant task: <a href="http://cvs.apache.org/~leosutic/commons-attributes-compiler-SNAPSHOT.jar">commons-attributes-compiler-SNAPSHOT.jar</a></p>
+                        <p>Ant task: <a href="http://www.ibiblio.org/maven/commons-attributes/jars/commons-attributes-compiler-2.1.jar">commons-attributes-compiler-2.1.jar</a></p>
                     </li>
                     <li>
                         <p>Commons Collections 2.1: <a href="http://www.ibiblio.org/maven/commons-collections/jars/commons-collections-2.1.jar">commons-collections-2.1.jar</a></p>
@@ -76,10 +81,10 @@
                 
             <ul>
                 <li>
-                    <p>Client API: <a href="http://cvs.apache.org/~leosutic/commons-attributes-api-SNAPSHOT.jar">commons-attributes-api-SNAPSHOT.jar</a></p>
+                    <p>Client API: <a href="http://www.ibiblio.org/maven/commons-attributes/jars/commons-attributes-api-2.1.jar">commons-attributes-api-2.1.jar</a></p>
                 </li>
                 <li>
-                    <p>Ant task: <a href="http://cvs.apache.org/~leosutic/commons-attributes-compiler-SNAPSHOT.jar">commons-attributes-compiler-SNAPSHOT.jar</a></p>
+                    <p>Ant task: <a href="http://www.ibiblio.org/maven/commons-attributes/jars/commons-attributes-compiler-2.1.jar">commons-attributes-compiler-2.1.jar</a></p>
                 </li>
                 <li>
                     <p>Maven plugin: <a href="http://cvs.apache.org/~leosutic/commons-attributes-plugin-2.1.jar">commons-attributes-plugin-2.1.jar</a></p>
@@ -93,7 +98,7 @@
             <source><![CDATA[<dependency>
     <groupId>commons-attributes</groupId>
     <artifactId>commons-attributes-api</artifactId>
-    <version>SNAPSHOT</version>
+    <version>2.1</version>
 </dependency>]]></source>
 
             
