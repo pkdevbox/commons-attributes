@@ -17,21 +17,18 @@
 =
 -->
 <project>
-    <extend>${basedir}/../project.xml</extend>
     <groupId>commons-attributes</groupId>
-    <id>commons-attributes-unittest</id>
-    <name>Jakarta Commons Attribute Compiler Unit Tests</name>
-    <package>org.apache.commons.attributes</package>
+    <id>commons-attributes-mavendemo</id>
+    <name>Jakarta Commons Attributes - Maven Demo</name>
     
-    <inceptionYear>2003</inceptionYear>
-    <shortDescription>Compiler for Jakarta Commons Attributes in Java.</shortDescription>
+    <shortDescription>A demo of Commons Attributes for Maven users.</shortDescription>
     
     <description>
-        A precompiler for java that enables the use of attributes as seen in C#.
+A demo of Commons Attributes for Maven users.
     </description>
     
     <build>
-        <unitTestSourceDirectory>${basedir}/src/test</unitTestSourceDirectory>
+        <sourceDirectory>${basedir}/src</sourceDirectory>
     </build>
     
     <dependencies>
@@ -45,27 +42,23 @@
             <id>xdoclet+xjavadoc</id>
             <version>1.0</version>
         </dependency>
+
+        <dependency>
+            <id>commons-attributes</id>
+            <artifactId>commons-attributes-api</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+        <dependency>
+            <id>commons-attributes</id>
+            <artifactId>commons-attributes-compiler</artifactId>
+            <version>2.1</version>
+        </dependency>
         
         <dependency>
             <id>commons-collections</id>
             <version>2.1</version>
         </dependency>
-       
-        
-        <dependency>
-            <groupId>commons-attributes</groupId>
-            <artifactId>commons-attributes-compiler</artifactId>
-            <version>2.1rc1</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>commons-attributes</groupId>
-            <artifactId>commons-attributes-api</artifactId>
-            <version>2.1rc1</version>
-        </dependency>
     </dependencies>
-    
-    <packageGroups>
-    </packageGroups>
     
 </project>
