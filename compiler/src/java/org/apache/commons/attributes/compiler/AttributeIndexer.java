@@ -1,5 +1,5 @@
 /*
- * Copyright 2003-2004 The Apache Software Foundation
+ * Copyright 2003-2005 The Apache Software Foundation
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -150,9 +150,9 @@ public class AttributeIndexer extends Task {
             File newJarFile = new File (jarFile.getPath () + ".new");
             JarOutputStream output = new JarOutputStream (new FileOutputStream (newJarFile));
             try {
-                Enumeration enum = jar.entries ();
-                while (enum.hasMoreElements ()) {
-                    JarEntry entry = (JarEntry) enum.nextElement ();
+                Enumeration e = jar.entries ();
+                while (e.hasMoreElements ()) {
+                    JarEntry entry = (JarEntry) e.nextElement ();
                     if (!entry.isDirectory ()) {
                         String className = entry.getName ();
                         if (className.endsWith (SUFFIX)) {

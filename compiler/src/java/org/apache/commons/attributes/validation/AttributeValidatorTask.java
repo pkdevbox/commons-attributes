@@ -1,5 +1,5 @@
 /*
- * Copyright 2003-2004 The Apache Software Foundation
+ * Copyright 2003-2005 The Apache Software Foundation
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -143,9 +143,9 @@ public class AttributeValidatorTask extends Task {
             
             JarFile jar = new JarFile (jarFile);
             try {
-                Enumeration enum = jar.entries ();
-                while (enum.hasMoreElements ()) {
-                    JarEntry entry = (JarEntry) enum.nextElement ();
+                Enumeration e = jar.entries ();
+                while (e.hasMoreElements ()) {
+                    JarEntry entry = (JarEntry) e.nextElement ();
                     if (!entry.isDirectory ()) {
                         String className = entry.getName ();
                         if (className.endsWith (SUFFIX)) {
