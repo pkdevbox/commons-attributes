@@ -24,7 +24,28 @@
     </properties>
     
     <body>
-        <section name="2004-06-06">
+        <section name="2004-07-24">
+            <ul>
+                <li>
+                    <p>
+                        Made the Maven plugin only run the attribute compiler if
+                        a project property named org.apache.commons.attributes.enabled
+                        was set to 'true'. Likewise, the attribute indexer will only run if
+                        a project property named org.apache.commons.attributes.index.enabled
+                        is set to 'true'. This to keep these two tasks to be run on
+                        every single project being built.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Created a Maven demo.
+                    </p>
+                </li>
+            </ul>
+        </section>
+        
+        
+        <section name="2004-07-06">
             <ul>
                 <li>
                     <p>

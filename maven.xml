@@ -38,9 +38,8 @@ Since the unit tests depend on the Maven plugin, which depend on the
 api, which require the unit tests to pass, you have to build this
 package in the following way:
 
-    maven install-snapshot
-    maven install-plugin
     maven install
+    maven install-plugin
     maven test
 
 ]]></echo>
