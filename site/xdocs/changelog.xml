@@ -24,6 +24,31 @@
     </properties>
     
     <body>
+        <section name="2004-09-11">
+            <ul>
+                <li>
+                    <p>
+                        <span style="color: #a00000; font-weight:bold;">BUG:</span> Checks for Target specifications would go unnoticed for attributes
+                        attached to fields, methods and constructors. The following code would
+                        <b>not</b> result in an <a href="api/org/apache/commons/attributes/InvalidAttributeTargetError.html">InvalidAttributeTargetError</a>.
+                    The bug is fixed in current CVS.
+                    </p>
+                    
+                    <source><![CDATA[/**
+ * @@Target(Target.METHOD) 
+ */
+public class AttributeWithTargetMethod {}
+
+public class FieldAttributes1 {
+    /**
+     * @@AttributeWithTargetMethod() 
+     */
+    private Object o;
+}]]></source>
+                </li>
+            </ul>
+        </section>
+  
         <section name="2004-09-10">
             <ul>
                 <li>
@@ -109,6 +134,7 @@
             <ul>
                 <li>
                     <p>
+                        <span style="color: #a00000; font-weight:bold;">BUG:</span> 
                         Fixed bug in the compiler that made it impossible to add
                         attributes to a method that took a parameter whose type 
                         was an inner class. The bug would manifest itself thus:
