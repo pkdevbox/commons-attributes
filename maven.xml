@@ -153,6 +153,15 @@ the javadoc API classes into a Maven repository...
             ignoreFailures="false" />
     </goal>
     
+    <goal name="dist">
+        <maven:reactor
+            basedir="${basedir}"
+            includes="api/project.xml,compiler/project.xml"
+            goals="dist:build"
+            banner="Creating distribution:"
+            ignoreFailures="false" />
+    </goal>
+    
     <goal name="install-plugin">
         <maven:reactor
             basedir="${basedir}"
