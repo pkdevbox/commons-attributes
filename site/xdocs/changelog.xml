@@ -28,14 +28,46 @@
             <ul>
                 <li>
                     <p>
-                        Fixed bug in compiler that made it impossible to add
+                        Fixed bug in the compiler that made it impossible to add
                         attributes to a method that took a parameter whose type 
-                        was an inner class.
+                        was an inner class. The bug would manifest itself thus:
                     </p>
+                    
+                    <source><![CDATA[public class Outer {
+    public static class Inner {}
+
+    /**
+     * @@SomeAttribute()
+     */
+    public void method (Inner inner) {}
+}
+
+...
+
+Method method = 
+    Outer.class.getMethod(
+        "method", 
+        new Class[]{ Outer.Inner.class });
+
+Collection methodAttributes = 
+    Attributes.getAttributes (method);
+
+// Prints 0, not 1
+System.out.println (methodAttributes.size ()); ]]></source>
+                    
+                    <p>The bug is fixed in current CVS.</p>
                 </li>
                 <li>
                     <p>
-                        Bumped version number to 2.1.
+                        Bumped version number to 2.1. The rationale for this is as follows: Many people had told me that
+                        a 2.0 release was required in order for them to get on with their own releases
+                        that could only depend on released versions of libraries. Since I could not move Attributes
+                        through the promotion and release process fast enough, and since the existing code appeared to
+                        work for people, I recommended that the jars simply be renamed from -2.0alpha to -2.0. After all,
+                        it was my intent to release the current CVS unchanged as 2.0.
+                        Then the bug above popped up and something had to be done. If I release the fixed version
+                        as 2.0, we have two "versions" of 2.0 - the one with the bug and the one without - clearly
+                        an undesirable state. Therefore the version number went from 2.0alpha to 2.1alpha.
                     </p>
                 </li>
             </ul>
