@@ -11,5 +11,8 @@ goto END
 
 echo Usage: windeploysite username
 echo Example: windeploysite leosutic
+echo This script assumes you have the PuTTY SSH client in your path. 
+echo See http://www.chiark.greenend.org.uk/~sgtatham/putty/
+echo for instructions on how to download and install PuTTY.
 
 :END

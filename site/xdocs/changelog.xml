@@ -24,6 +24,39 @@
     </properties>
     
     <body>
+        <section name="2004-08-27">
+            <ul>
+                <li>
+                    <p>
+                        <a href="api/org/apache/commons/attributes/CircularDependencyError.html">CircularDependencyError</a> 
+                        now expects a list of Class instances instead of a list of any object type. The old behavior is still
+                        supported and will remain so.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <a href="api/org/apache/commons/attributes/CircularDependencyError.html">CircularDependencyError</a> 
+                        now shows the full circle of dependencies.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Added a <a href="api/org/apache/commons/attributes/ParameterIndexOutOfBoundsException.html">ParameterIndexOutOfBoundsException</a> to be thrown when
+                        the client tries to retrieve attributes from a parameter of a
+                        constructor or method and the parameter index is out of bounds.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Added a <a href="api/org/apache/commons/attributes/SealedAttributeException.html">SealedAttributeException</a> 
+                        to be thrown when an attempt to
+                        modify a sealed attribute is made. The exception is a subclass
+                        of the IllegalStateException that used to be thrown.
+                    </p>
+                </li>
+            </ul>
+        </section>
+        
         <section name="2004-08-26">
             <ul>
                 <li>
@@ -109,7 +142,7 @@ System.out.println (methodAttributes.size ()); ]]></source>
                 </li>
             </ul>
         </section>
-
+        
         <section name="2004-05-04">
             <ul>
                 <li>
@@ -124,8 +157,8 @@ System.out.println (methodAttributes.size ()); ]]></source>
                 </li>
             </ul>
         </section>
-
-
+        
+        
         <section name="2004-03-21">
             
             <ul>

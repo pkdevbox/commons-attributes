@@ -21,6 +21,20 @@
  + Added getCause() to applicable Throwables, making them compliant 
    with the standard Java2 1.4 nested throwable spec.
 
+ + CircularDependencyError now expects a list of Class instances
+   instead of a list of any object type. The old behavior is still
+   supported and will remain so.
+
+ + CircularDependencyError now shows the full circle of dependencies.
+
+ + Added a ParameterIndexOutOfBoundsException to be thrown when
+   the client tries to retrieve attributes from a parameter of a
+   constructor or method and the parameter index is out of bounds.
+
+ + Added a SealedAttributeException to be thrown when an attempt to
+   modify a sealed attribute is made. The exception is a subclass
+   of the IllegalStateException that used to be thrown.
+
 == 2.1 ==
 
  + Made the Maven plugin only run the attribute compiler if
