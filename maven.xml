@@ -290,4 +290,12 @@ the javadoc API classes into a Maven repository...
         </javadoc>
     </goal>
     
+    <goal name="attributes:windeploysite">
+        <attainGoal name="site"/>
+        <mkdir dir="target"/>
+        <zip destfile="target/site.zip">
+            <fileset dir="site/target/docs/" includes="**/*"/>
+        </zip>
+    </goal>
+    
 </project>
