@@ -49,8 +49,17 @@ import java.util.WeakHashMap;
  *     or other "Error-like" conditions.
  * </ul>
  *
+ * <h3>Null References</h3>
+ *
+ * <p>If a parameter to a method may not be null, and a null is passed to the
+ * method, a {@link java.lang.NullPointerException} will be thrown, with the
+ * parameter name in the message.
+ *
+ * <p>Rationale for using this instead of {@link java.lang.IllegalArgumentException}
+ * is that it is more precise - the reference was null.
+ *
  * <h3>Performance Notes</h3>
- * The process of loading attributes for a class is a
+ * <p>The process of loading attributes for a class is a
  * (relatively) time-consuming process, as it involves some dynamic linking 
  * in the form of inheritable attributes, a lot of reflection and so on. However,
  * once loaded the attributes are cached, so repeated access to them are fast.
@@ -114,24 +123,20 @@ public class Attributes {
     private static List initList = new ArrayList ();
     
     private synchronized static CachedRepository getCachedRepository (Class clazz) throws RepositoryError, CircularDependencyError {
-        if (classRepositories.containsKey (clazz)) {
+        if (initList.contains (clazz)) {
+            List dependencyList = new ArrayList ();
+            dependencyList.addAll (initList);
+            dependencyList.add (clazz);
+            throw new CircularDependencyError (clazz.getName (), dependencyList);
+        } else if (classRepositories.containsKey (clazz)) {
             CachedRepository cr = (CachedRepository) classRepositories.get (clazz);
-            if (cr == null) {
-                // Circular references.
-                List dependencyList = new ArrayList ();
-                dependencyList.addAll (initList);
-                throw new CircularDependencyError (clazz.getName (), dependencyList);
-            } else {
-                return cr;
-            }
+            return cr;
         } else {
             // Indicate that we're loading it.
             CachedRepository cached = null;
             
-            initList.add (clazz.getName ());
+            initList.add (clazz);
             try {
-                classRepositories.put (clazz, null);
-                
                 Class attributeRepo = null;
                 AttributeRepositoryClass repo = EmptyAttributeRepositoryClass.INSTANCE;
                 try {
@@ -163,7 +168,9 @@ public class Attributes {
     /**
      * Selects from a collection of attributes one attribute with a given class.
      *
-     * @return the attribute instance, or null of none could be found.
+     * @param attrs the collection of attribute instances to select from.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
+     * @return the attribute instance, or <code>null</code> of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
      */
@@ -187,7 +194,9 @@ public class Attributes {
     /**
      * Get one attributes of a given type from a class.
      *
-     * @return the attribute instance, or null of none could be found.
+     * @param clazz the class. May not be <code>null</code>.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
+     * @return the attribute instance, or <code>null</code> of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
      *
@@ -200,7 +209,9 @@ public class Attributes {
     /**
      * Get one attributes of a given type from a field.
      *
-     * @return the attribute instance, or null of none could be found.
+     * @param field the field. May not be <code>null</code>.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
+     * @return the attribute instance, or <code>null</code> of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
      *
@@ -213,20 +224,24 @@ public class Attributes {
     /**
      * Get one attributes of a given type from a constructor.
      *
-     * @return the attribute instance, or null of none could be found.
+     * @param constructor the constructor. May not be <code>null</code>.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
+     * @return the attribute instance, or <code>null</code> of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
      *
      * @since 2.1
      */
-    public static Object getAttribute (Constructor ctor, Class attributeClass) throws RepositoryError, MultipleAttributesError {
-        return getAttribute (getAttributes (ctor), attributeClass);
+    public static Object getAttribute (Constructor constructor, Class attributeClass) throws RepositoryError, MultipleAttributesError {
+        return getAttribute (getAttributes (constructor), attributeClass);
     }
     
     /**
      * Get one attributes of a given type from a method.
      *
-     * @return the attribute instance, or null of none could be found.
+     * @param method the method. May not be <code>null</code>.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
+     * @return the attribute instance, or <code>null</code> of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
      *
@@ -239,9 +254,14 @@ public class Attributes {
     /**
      * Get one attributes of a given type from a parameter.
      *
-     * @return the attribute instance, or null of none could be found.
+     * @param method the method. May not be <code>null</code>.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
+     * @param parameter index of the parameter in the method's parameter list.
+     * @return the attribute instance, or <code>null</code> of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
+     * @throws ParameterIndexOutOfBoundsException if the parameter index is < 0 or greater than the number 
+     *                                            of parameters the method accepts.
      *
      * @since 2.1
      */
@@ -252,9 +272,14 @@ public class Attributes {
     /**
      * Get one attributes of a given type from a constructor's parameter.
      *
-     * @return the attribute instance, or null of none could be found.
+     * @param constructor the constructor. May not be <code>null</code>.
+     * @param parameter index of the parameter in the method's parameter list.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
+     * @return the attribute instance, or <code>null</code> of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
+     * @throws ParameterIndexOutOfBoundsException if the parameter index is < 0 or greater than the number 
+     *                                            of parameters the constructor accepts.
      *
      * @since 2.1
      */
@@ -265,7 +290,9 @@ public class Attributes {
     /**
      * Get one attributes of a given type from a method's return value.
      *
-     * @return the attribute instance, or null of none could be found.
+     * @param method the method. May not be <code>null</code>.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
+     * @return the attribute instance, or <code>null</code> of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
      *
@@ -277,6 +304,8 @@ public class Attributes {
     
     /**
      * Gets all attributes for a class.
+     *
+     * @param clazz the class. May not be <code>null</code>.    
      *
      * @since 2.1
      */
@@ -291,6 +320,8 @@ public class Attributes {
     /**
      * Gets all attributes for a method.
      *
+     * @param method the method. May not be <code>null</code>.
+     *
      * @since 2.1
      */
     public static Collection getAttributes (Method method) throws RepositoryError {
@@ -304,14 +335,28 @@ public class Attributes {
     /**
      * Gets all attributes for a parameter of a method.
      *
+     * @param method the method. May not be <code>null</code>.
+     * @param parameter the index of the parameter in the method's parameter list.
+     * @throws ParameterIndexOutOfBoundsException if the parameter index is < 0 or greater than the number 
+     *                                            of parameters the method accepts.
+     *    
      * @since 2.1
      */
     public static Collection getParameterAttributes (Method method, int parameter) throws RepositoryError {
+        if (method == null) {
+            throw new NullPointerException ("method");
+        }
+        
         return getCachedRepository (method.getDeclaringClass()).getParameterAttributes (method, parameter);
     }
     
     /**
      * Gets all attributes for a parameter of a constructor.
+     *
+     * @param constructor the constructor. May not be <code>null</code>.
+     * @param parameter the index of the parameter in the constructor's parameter list.
+     * @throws ParameterIndexOutOfBoundsException if the parameter index is < 0 or greater than the number 
+     *                                            of parameters the constructor accepts.
      *
      * @since 2.1
      */
@@ -325,6 +370,8 @@ public class Attributes {
     /**
      * Gets all attributes for the return value of a method.
      *
+     * @param method the method. May not be <code>null</code>.
+     *
      * @since 2.1
      */
     public static Collection getReturnAttributes (Method method) throws RepositoryError {
@@ -336,6 +383,8 @@ public class Attributes {
     
     /**
      * Gets all attributes for a field.
+     *
+     * @param field the field. May not be <code>null</code>.
      *
      * @since 2.1
      */
@@ -349,13 +398,15 @@ public class Attributes {
     /**
      * Gets all attributes for a constructor.
      *
+     * @param constructor the constructor. May not be <code>null</code>.
+     *
      * @since 2.1
      */
-    public static Collection getAttributes (Constructor cons) throws RepositoryError {
-        if (cons == null) {
-            throw new NullPointerException ("cons");
+    public static Collection getAttributes (Constructor constructor) throws RepositoryError {
+        if (constructor == null) {
+            throw new NullPointerException ("constructor");
         }
-        return getCachedRepository (cons.getDeclaringClass()).getAttributes (cons);
+        return getCachedRepository (constructor.getDeclaringClass()).getAttributes (constructor);
     }
     
     /**
@@ -380,6 +431,9 @@ public class Attributes {
      * Get all attributes of a given type from a class. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
      *
+     * @param clazz the class. May not be <code>null</code>.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
+     *
      * @since 2.1
      */
     public static Collection getAttributes (Class clazz, Class attributeClass) throws RepositoryError {
@@ -389,6 +443,9 @@ public class Attributes {
     /**
      * Get all attributes of a given type from a field. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
+     *
+     * @param field the field. May not be <code>null</code>.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
      *
      * @since 2.1
      */
@@ -400,15 +457,21 @@ public class Attributes {
      * Get all attributes of a given type from a constructor. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
      *
+     * @param constructor the constructor. May not be <code>null</code>.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
+     *
      * @since 2.1
      */
-    public static Collection getAttributes (Constructor ctor, Class attributeClass) throws RepositoryError {
-        return getAttributes (getAttributes (ctor), attributeClass);
+    public static Collection getAttributes (Constructor constructor, Class attributeClass) throws RepositoryError {
+        return getAttributes (getAttributes (constructor), attributeClass);
     }
     
     /**
      * Get all attributes of a given type from a method. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
+     *
+     * @param method the method. May not be <code>null</code>.
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
      *
      * @since 2.1
      */
@@ -420,6 +483,12 @@ public class Attributes {
      * Get all attributes of a given type from a method's parameter. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
      *
+     * @param method the method. May not be <code>null</code>.
+     * @param parameter index of the parameter in the method's parameter list
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
+     * @throws ParameterIndexOutOfBoundsException if the parameter index is < 0 or greater than the number 
+     *                                            of parameters the method accepts.
+     *
      * @since 2.1
      */
     public static Collection getParameterAttributes (Method method, int parameter, Class attributeClass) throws RepositoryError {
@@ -430,6 +499,12 @@ public class Attributes {
      * Get all attributes of a given type from a method's parameter. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
      *
+     * @param constructor the constructor. May not be <code>null</code>.
+     * @param parameter index of the parameter in the constructor's parameter list
+     * @param attributeClass the type of attribute. May be <code>null</code>, but this will not match anything.
+     * @throws ParameterIndexOutOfBoundsException if the parameter index is < 0 or greater than the number 
+     *                                            of parameters the constructor accepts.
+     *
      * @since 2.1
      */
     public static Collection getParameterAttributes (Constructor constructor, int parameter, Class attributeClass) throws RepositoryError {
@@ -439,6 +514,9 @@ public class Attributes {
     /**
      * Get all attributes of a given type from a method's return value. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
+     *
+     * @param method the method
+     * @param attributeClass the type of attribute wanted. May be <code>null</code>, but this will not match anything.
      *
      * @since 2.1
      */
@@ -468,6 +546,9 @@ public class Attributes {
      * Tests if a class has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
      *
+     * @param class the class. May not be <code>null</code>.
+     * @param attributeClass the type of attribute. May be <code>null</code>, but this will not match anything.
+     *
      * @since 2.1
      */
     public static boolean hasAttributeType (Class clazz, Class attributeClass) throws RepositoryError {
@@ -477,6 +558,9 @@ public class Attributes {
     /**
      * Tests if a field has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
+     *
+     * @param field the field. May not be <code>null</code>.
+     * @param attributeClass the type of attribute. May be <code>null</code>, but this will not match anything.
      *
      * @since 2.1
      */
@@ -488,15 +572,21 @@ public class Attributes {
      * Tests if a constructor has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
      *
+     * @param ctor the constructor. May not be <code>null</code>.
+     * @param attributeClass the type of attribute. May be <code>null</code>, but this will not match anything.
+     *
      * @since 2.1
      */
-    public static boolean hasAttributeType (Constructor ctor, Class attributeClass) throws RepositoryError {
-        return hasAttributeType (getAttributes (ctor), attributeClass);
+    public static boolean hasAttributeType (Constructor constructor, Class attributeClass) throws RepositoryError {
+        return hasAttributeType (getAttributes (constructor), attributeClass);
     }
     
     /**
      * Tests if a method has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
+     *
+     * @param method the method. May not be <code>null</code>.
+     * @param attributeClass the type of attribute. May be <code>null</code>, but this will not match anything.
      *
      * @since 2.1
      */
@@ -508,6 +598,12 @@ public class Attributes {
      * Tests if a method's parameter has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
      *
+     * @param method the method. May not be <code>null</code>.
+     * @param parameter the index of the parameter in the method's parameter list.
+     * @param attributeClass the type of attribute. May be <code>null</code>, but this will not match anything.
+     * @throws ParameterIndexOutOfBoundsException if the parameter index is < 0 or greater than the number 
+     *                                            of parameters the method accepts.
+     *
      * @since 2.1
      */
     public static boolean hasParameterAttributeType (Method method, int parameter, Class attributeClass) throws RepositoryError {
@@ -518,6 +614,12 @@ public class Attributes {
      * Tests if a constructor's parameter has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
      *
+     * @param constructor the constructor. May not be <code>null</code>.
+     * @param parameter the index of the parameter in the constructor's parameter list.
+     * @param attributeClass the type of attribute. May be <code>null</code>, but this will not match anything.
+     * @throws ParameterIndexOutOfBoundsException if the parameter index is < 0 or greater than the number 
+     *                                            of parameters the constructor accepts.
+     *
      * @since 2.1
      */
     public static boolean hasParameterAttributeType (Constructor constructor, int parameter, Class attributeClass) throws RepositoryError {
@@ -527,6 +629,9 @@ public class Attributes {
     /**
      * Tests if a method's return value has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
+     *
+     * @param method the method. May not be <code>null</code>.
+     * @param attributeClass the type of attribute. May be <code>null</code>, but this will not match anything.
      *
      * @since 2.1
      */
@@ -548,6 +653,9 @@ public class Attributes {
      * Tests if a class has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
      *
+     * @param clazz the class. May not be <code>null</code>.
+     * @param attribute the attribute to compare to.
+     *
      * @since 2.1
      */
     public static boolean hasAttribute (Class clazz, Object attribute) throws RepositoryError {
@@ -557,6 +665,9 @@ public class Attributes {
     /**
      * Tests if a field has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
+     *
+     * @param field the field. May not be <code>null</code>.
+     * @param attribute the attribute to compare to.
      *
      * @since 2.1
      */
@@ -568,15 +679,21 @@ public class Attributes {
      * Tests if a constructor has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
      *
+     * @param constructor the constructor. May not be <code>null</code>.
+     * @param attribute the attribute to compare to.
+     *
      * @since 2.1
      */
-    public static boolean hasAttribute (Constructor ctor, Object attribute) throws RepositoryError {
-        return hasAttribute (getAttributes (ctor), attribute);
+    public static boolean hasAttribute (Constructor constructor, Object attribute) throws RepositoryError {
+        return hasAttribute (getAttributes (constructor), attribute);
     }
     
     /**
      * Tests if a method has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
+     *
+     * @param method the method. May not be <code>null</code>.
+     * @param attribute the attribute to compare to.
      *
      * @since 2.1
      */
@@ -587,6 +704,12 @@ public class Attributes {
     /**
      * Tests if a method's parameter has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
+     *    
+     * @param method the method. May not be <code>null</code>.
+     * @param parameter the index of the parameter in the method's parameter list.
+     * @param attribute the attribute to compare to.
+     * @throws ParameterIndexOutOfBoundsException if the parameter index is < 0 or greater than the number 
+     *                                            of parameters the method accepts.
      *
      * @since 2.1
      */
@@ -598,6 +721,12 @@ public class Attributes {
      * Tests if a constructor's parameter has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
      *
+     * @param constructor the constructor. May not be <code>null</code>.
+     * @param parameter the index of the parameter in the constructor's parameter list.
+     * @param attribute the attribute to compare to.
+     * @throws ParameterIndexOutOfBoundsException if the parameter index is < 0 or greater than the number 
+     *                                            of parameters the constructor accepts.
+     *
      * @since 2.1
      */
     public static boolean hasParameterAttribute (Constructor constructor, int parameter, Object attribute) throws RepositoryError {
@@ -607,6 +736,9 @@ public class Attributes {
     /**
      * Tests if a method's return value has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
+     *
+     * @param method the method. May not be <code>null</code>.
+     * @param attribute the attribute to compare to.
      *
      * @since 2.1
      */
@@ -628,6 +760,10 @@ public class Attributes {
      * @since 2.1
      */
     public static synchronized void setAttributes (RuntimeAttributeRepository repo) throws IllegalStateException {
+        if (repo == null) {
+            throw new NullPointerException ("repo");
+        }
+        
         repo.seal ();
         
         Class clazz = repo.getDefinedClass ();

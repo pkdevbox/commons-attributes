@@ -30,11 +30,16 @@ public class CircularDependencyError extends RepositoryError {
      * Create a new CircularDependencyError.
      *
      * @param className the name of the class that started it all.
-     * @param dependencyList a list of the classes that the original
+     * @param dependencyList a list of the classes ({@link java.lang.Class}) 
+     *                       that the original
      *                       class depended on, the classes they
      *                       depended on, and so on. The list should
      *                       show the chain of dependencies that resulted
-     *                       in the exception being thrown.
+     *                       in the exception being thrown. <b>Note</b>:
+     *                       Versions prior to 2.2 accepted a list of Objects
+     *                       of any type. This is still supported, but the
+     *                       formatting may suffer. Please only use lists of
+     *                       {@link java.lang.Class}.
      *
      * @since 2.1
      */
@@ -53,7 +58,17 @@ public class CircularDependencyError extends RepositoryError {
         StringBuffer sb = new StringBuffer ();
         Iterator iter = dependencyList.iterator ();
         while (iter.hasNext ()) {
-            sb.append (iter.next ());
+            Object o = iter.next ();
+            
+            // Test that the user really passed in a Class. Versions
+            // prior to 2.2 received Strings instead, and any user that
+            // used the code would find it broken.
+            if (o != null && o instanceof Class) {
+                sb.append (((Class) o).getName ());
+            } else {
+                sb.append (o);
+            }
+            
             if (iter.hasNext ()) {
                 sb.append (" -> ");
             }

@@ -30,7 +30,10 @@ public class TargetTestCase extends TestCase {
             
             fail ();
         } catch (InvalidAttributeTargetError iate) {
-            System.out.println (iate.getMessage ());
+            assertEquals ("Attributes of type org.apache.commons.attributes.test.AttributeWithTarget " + 
+                "can't be applied to org.apache.commons.attributes.test.ClassWithInvalidDeclarations. " + 
+                "They can only be applied to: METHOD", 
+                iate.getMessage ());
             // OK.
         }
     }

@@ -45,7 +45,7 @@ public class DefaultSealable implements Sealable {
      */
     protected void checkSealed () throws IllegalStateException {
         if (sealed) {
-            throw new IllegalStateException ("sealed");
+            throw new SealedAttributeException ();
         }
     }
     

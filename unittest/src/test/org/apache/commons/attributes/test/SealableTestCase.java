@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import org.apache.commons.attributes.Attributes;
 import org.apache.commons.attributes.AttributeIndex;
+import org.apache.commons.attributes.SealedAttributeException;
 import junit.framework.TestCase;
 
 public class SealableTestCase extends TestCase {
@@ -38,6 +39,18 @@ public class SealableTestCase extends TestCase {
             fail ("Attribute should be sealed!");
         } catch (IllegalStateException ise) {
             // -- OK, attribute should be sealed.
+        }
+    }
+    
+    public void testSealableExceptionType () throws Exception {
+        Method m = Sample.class.getMethod ("methodWithNamedParameters", new Class[]{ });
+        BeanAttribute attribute = (BeanAttribute) Attributes.getAttributes (m, BeanAttribute.class).iterator ().next ();
+        
+        try {
+            attribute.setName ("Joe Doe");
+            fail ("Attribute should be sealed!");
+        } catch (SealedAttributeException ise) {
+            // -- OK, attribute should be sealed and throw a SealedAttributeException.
         }
     }
 }

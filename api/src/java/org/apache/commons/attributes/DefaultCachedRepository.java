@@ -46,8 +46,10 @@ class DefaultCachedRepository implements CachedRepository {
         private Collection attributes = EMPTY_COLLECTION;
         private List parameterAttributes = new ArrayList ();
         private Collection returnAttributes = EMPTY_COLLECTION;
+        private final String methodName;
         
-        public MethodAttributeBundle () {
+        public MethodAttributeBundle (String methodName) {
+            this.methodName = methodName;
         }
         
         public Collection getAttributes () {
@@ -59,6 +61,9 @@ class DefaultCachedRepository implements CachedRepository {
         }
         
         public Collection getParameterAttributes (int index) {
+            if (index < 0 || index >= parameterAttributes.size ()) {
+                throw new ParameterIndexOutOfBoundsException (methodName, index, parameterAttributes.size ());
+            }
             return (Collection) parameterAttributes.get (index);
         }
         
@@ -91,10 +96,10 @@ class DefaultCachedRepository implements CachedRepository {
         // ---- Fix up method attributes
         Method[] methods = clazz.getDeclaredMethods ();
         for (int i = 0; i < methods.length; i++) {
-            MethodAttributeBundle bundle = new MethodAttributeBundle ();
             
             Method m = methods[i];
             String key = Util.getSignature (m);
+            MethodAttributeBundle bundle = new MethodAttributeBundle (m.toString ());
             
             List attributeBundle = null;
             if (repo.getMethodAttributes ().containsKey (key)) {
@@ -154,7 +159,7 @@ class DefaultCachedRepository implements CachedRepository {
             if (repo.getConstructorAttributes ().containsKey (key)) {
                 List attributeBundle = null;
                 attributeBundle = (List) repo.getConstructorAttributes ().get (key);
-                MethodAttributeBundle bundle = new MethodAttributeBundle ();
+                MethodAttributeBundle bundle = new MethodAttributeBundle (ctor.toString ());
                 
                 bundle.setAttributes ((Collection) attributeBundle.get (0));
                 // ---- Parameter attributes

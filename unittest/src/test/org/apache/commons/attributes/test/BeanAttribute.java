@@ -15,30 +15,23 @@
  */
 package org.apache.commons.attributes.test;
 
+import org.apache.commons.attributes.DefaultSealable;
 import org.apache.commons.attributes.Sealable;
 
 /**
  * A sample attribute with bean-like properties. Used to test the 
  * named parameter syntax.
  */
-public class BeanAttribute implements Sealable {
+public class BeanAttribute extends DefaultSealable {
     
     private final int number;
     private final String string;
     private String name;
     private int anotherNumber;
     
-    private boolean sealed = false;
-    
     public BeanAttribute (int number, String string) {
         this.number = number;
         this.string = string;
-    }
-    
-    protected void checkSealed () {
-        if (sealed) {
-            throw new IllegalStateException ("Attribute has been sealed and is read-only.");
-        }
     }
     
     public int getNumber () {
@@ -77,10 +70,6 @@ public class BeanAttribute implements Sealable {
     
     public int hashCode () {
         return string.hashCode ();
-    }
-    
-    public void seal () {
-        sealed = true;
     }
     
     public String toString () {
