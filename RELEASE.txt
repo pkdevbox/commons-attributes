@@ -18,6 +18,12 @@
 
 == 2.2 ==
 
+=== Changes ===
+
+ + Ported compiler to qDox 1.5.
+
+=== Enhancements ===
+
  + Added getCause() to applicable Throwables, making them compliant 
    with the standard Java2 1.4 nested throwable spec.
 
@@ -34,6 +40,24 @@
  + Added a SealedAttributeException to be thrown when an attempt to
    modify a sealed attribute is made. The exception is a subclass
    of the IllegalStateException that used to be thrown.
+
+=== Bugfixes ===
+
+ + Target specifications would go unnoticed for attributes attached 
+   to fields, methods and constructors. The following code would *not* 
+   result in an InvalidAttributeTargetError.
+
+      /**
+       * @@Target(Target.METHOD) 
+       */
+      public class AttributeWithTargetMethod {}
+
+      public class FieldAttributes1 {
+          /**
+           * @@AttributeWithTargetMethod() 
+           */
+          private Object o;
+      }
 
 == 2.1 ==
 
