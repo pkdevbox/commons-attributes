@@ -26,10 +26,7 @@
         <pathelement path="${plugin.getDependencyPath('commons-attributes:commons-attributes-api')}"/>
         <pathelement path="${plugin.getDependencyPath('commons-attributes:commons-attributes-compiler')}"/>
 
-        <pathelement path="${plugin.getDependencyPath('commons-collections')}"/>
-        <pathelement path="${plugin.getDependencyPath('commons-logging')}"/>
-        <pathelement path="${plugin.getDependencyPath('log4j')}"/>
-        <pathelement path="${plugin.getDependencyPath('xdoclet+xjavadoc')}"/>
+        <pathelement path="${plugin.getDependencyPath('qdox')}"/>
     </ant:path>
 
     <ant:taskdef 

@@ -140,9 +140,7 @@
     <target name="get-deps" unless="noget" depends="init">
         <get dest="${libdir}/ant-1.5.jar" usetimestamp="true" ignoreerrors="true" src="http://www.ibiblio.org/maven/ant/jars/ant-1.5.jar">
         </get>
-        <get dest="${libdir}/xdoclet-xjavadoc-1.0.jar" usetimestamp="true" ignoreerrors="true" src="http://www.ibiblio.org/maven/xdoclet/jars/xdoclet-xjavadoc-1.0.jar">
-        </get>
-        <get dest="${libdir}/commons-collections-2.1.jar" usetimestamp="true" ignoreerrors="true" src="http://www.ibiblio.org/maven/commons-collections/jars/commons-collections-2.1.jar">
+        <get dest="${libdir}/qdox-1.5.jar" usetimestamp="true" ignoreerrors="true" src="http://www.ibiblio.org/maven/qdox/jars/qdox-1.5.jar">
         </get>
         <get dest="${libdir}/junit-3.8.1.jar" usetimestamp="true" ignoreerrors="true" src="http://www.ibiblio.org/maven/junit/jars/junit-3.8.1.jar">
         </get>

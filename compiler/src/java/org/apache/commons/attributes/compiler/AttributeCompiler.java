@@ -27,22 +27,19 @@ import java.util.Iterator;
 import java.util.StringTokenizer;
 
 import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.DirectoryScanner;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
 
-import xjavadoc.SourceClass;
-import xjavadoc.XClass;
-import xjavadoc.XConstructor;
-import xjavadoc.XJavaDoc;
-import xjavadoc.XField;
-import xjavadoc.XMethod;
-import xjavadoc.XParameter;
-import xjavadoc.XProgramElement;
-import xjavadoc.XTag;
-import xjavadoc.ant.XJavadocTask;
-import xjavadoc.filesystem.AbstractFile;
+import com.thoughtworks.qdox.JavaDocBuilder;
+import com.thoughtworks.qdox.model.JavaClass;
+import com.thoughtworks.qdox.model.JavaField;
+import com.thoughtworks.qdox.model.JavaMethod;
+import com.thoughtworks.qdox.model.DocletTag;
+import com.thoughtworks.qdox.model.JavaParameter;
+
 
 /**
  * Ant task to compile attributes. Usage:
@@ -64,7 +61,7 @@ import xjavadoc.filesystem.AbstractFile;
  * additional Java source files in the destination directory that should be compiled
  * along with the input source files. (See the overview for a diagram.)
  */
-public class AttributeCompiler extends XJavadocTask {
+public class AttributeCompiler extends Task {
     
     private final ArrayList fileSets = new ArrayList ();
     private Path src;
@@ -81,7 +78,6 @@ public class AttributeCompiler extends XJavadocTask {
     }
     
     public void addFileset (FileSet set) {
-        super.addFileset (set);
         fileSets.add (set);
     }
     
@@ -115,18 +111,19 @@ public class AttributeCompiler extends XJavadocTask {
         }
     }
     
-    protected void addExpressions (Collection tags, PrintWriter pw, String collectionName, File sourceFile) {
+    protected void addExpressions (DocletTag[] tags, PrintWriter pw, String collectionName, File sourceFile) {
         addExpressions (tags, null, pw, collectionName, sourceFile);
     }
     
-    protected void addExpressions (Collection tags, String selector, PrintWriter pw, String collectionName, File sourceFile) {
+    protected void addExpressions (DocletTag[] tags, String selector, PrintWriter pw, String collectionName, File sourceFile) {
         String fileName = sourceFile != null ? sourceFile.getPath ().replace ('\\', '/') : "<unknown>";
-        Iterator iter = tags.iterator ();
-        while (iter.hasNext ()) {
-            XTag tag = (XTag) iter.next ();
+        for (int i = 0; i < tags.length; i++) {
+            DocletTag tag = tags[i];
             
             if (isAttribute (tag)) {
-                String expression = tag.getName () + " " + tag.getValue ();
+                String tagName = tag.getName ();
+                String tagValue = tag.getValue ();
+                String expression = tagName + " " + tagValue;
                 expression = expression.trim ();
                 
                 // Remove the second @-sign.
@@ -195,11 +192,18 @@ public class AttributeCompiler extends XJavadocTask {
         }
     }
     
-    protected boolean elementHasAttributes (Collection xElements) {
-        Iterator iter = xElements.iterator ();
-        while (iter.hasNext ()) {
-            XProgramElement element = (XProgramElement) iter.next ();
-            if (tagHasAttributes (element.getDoc ().getTags ())) {
+    protected boolean elementHasAttributes (JavaField[] fields) {
+        for (int i = 0; i < fields.length; i++) {
+            if (tagHasAttributes (fields[i].getTags ())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    protected boolean elementHasAttributes (JavaMethod[] methods) {
+        for (int i = 0; i < methods.length; i++) {
+            if (tagHasAttributes (methods[i].getTags ())) {
                 return true;
             }
         }
@@ -209,56 +213,53 @@ public class AttributeCompiler extends XJavadocTask {
     /**
      * Encodes a class name to the internal Java name.
      * For example, an inner class Outer.Inner will be
-     * encoed as Outer$Inner.
+     * encoded as Outer$Inner.
      */
-    private void getTransformedQualifiedName (XClass type, StringBuffer sb) {
-        
-        if (type.isInner ()) {
-            String packageName = type.getContainingPackage ().getName ();
-            sb.append (packageName);
-            if (packageName.length () > 0) {
-                sb.append (".");
-            }
-            sb.append (type.getName ().replace ('.','$'));
-        } else {
-            sb.append (type.getQualifiedName ());
-        }
+    private void getTransformedQualifiedName (JavaClass type, StringBuffer sb) {
+        sb.append (type.getFullyQualifiedName ());
     }
     
-    protected String getParameterTypes (Collection parameters) {
+    protected String getParameterTypes (JavaParameter[] parameters) {
         StringBuffer sb = new StringBuffer ();
-        for (Iterator params = parameters.iterator (); params.hasNext ();) {
-            XParameter parameter = (XParameter) params.next ();
-            getTransformedQualifiedName (parameter.getType (), sb);
-            sb.append (parameter.getDimensionAsString ());
-            
-            if (params.hasNext ()) {
+        for (int i = 0; i < parameters.length; i++) {
+            if (i > 0) {
                 sb.append (",");
+            }
+            
+            getTransformedQualifiedName (parameters[i].getType ().getJavaClass (), sb);
+            for (int j = 0; j < parameters[i].getType ().getDimensions (); j++) {
+                sb.append ("[]");
             }
         }
         return sb.toString ();
     }
     
-    protected void generateClass (XClass xClass) throws Exception {
+    protected void generateClass (JavaClass javaClass) throws Exception {
         String name = null;
         File sourceFile = null;
         File destFile = null;
         String packageName = null;
         String className = null;
         
-        packageName = xClass.getContainingPackage().getName ();
+        packageName = javaClass.getPackage ();
+        if (packageName == null) {
+            packageName = "";
+        }
         
-        if (xClass.isInner ()) {
-            name = xClass.getQualifiedName ().substring (packageName.length ());
+        if (javaClass.isInner ()) {
+            sourceFile = getSourceFile (javaClass);
             
-            sourceFile = getSourceFile (xClass);
-            
-            className = xClass.getName ().replace ('.', '$');
-            name = packageName + (packageName.length () > 0 ? "." : "") + className;            
+            String nonPackagePrefix = javaClass.getParent ().getClassNamePrefix ();
+            if (packageName.length () > 0) {
+                nonPackagePrefix = nonPackagePrefix.substring (packageName.length () + 1);
+            }
+                        
+            className = nonPackagePrefix + javaClass.getName ();
+            name = javaClass.getParent ().getClassNamePrefix () + javaClass.getName ();
         } else {
-            name = xClass.getQualifiedName ();
-            sourceFile = getSourceFile (xClass);
-            className = xClass.getName ();
+            name = javaClass.getFullyQualifiedName ();
+            sourceFile = getSourceFile (javaClass);
+            className = javaClass.getName ();
         }
         
         if (sourceFile == null) {
@@ -267,13 +268,13 @@ public class AttributeCompiler extends XJavadocTask {
         
         destFile = new File (destDir, name.replace ('.', '/') + "$__attributeRepository.java");
         
-        if (xClass.isAnonymous ()) {
-            log (xClass.getName () + " is anonymous - ignoring.", Project.MSG_VERBOSE);
-            numIgnored++;
-            return;
-        }
+        /*if (javaClass.isAnonymous ()) {
+        log (javaClass.getName () + " is anonymous - ignoring.", Project.MSG_VERBOSE);
+        numIgnored++;
+        return;
+        }*/
         
-        if (!hasAttributes (xClass)) {
+        if (!hasAttributes (javaClass)) {
             if (destFile.exists ()) {
                 destFile.delete ();
             }
@@ -326,7 +327,7 @@ public class AttributeCompiler extends XJavadocTask {
                 pw.println ();
                 
                 pw.println ("    private void initClassAttributes () {");
-                addExpressions (xClass.getDoc ().getTags (), pw, "classAttributes", sourceFile);
+                addExpressions (javaClass.getTags (), pw, "classAttributes", sourceFile);
                 pw.println ("    }");
                 pw.println ();
                 
@@ -334,13 +335,14 @@ public class AttributeCompiler extends XJavadocTask {
                 
                 pw.println ("    private void initFieldAttributes () {");
                 pw.println ("        java.util.Set attrs = null;");
-                for (Iterator iter = xClass.getFields ().iterator (); iter.hasNext ();) {
-                    XField member = (XField) iter.next ();
-                    if (member.getDoc ().getTags ().size () > 0) {
+                JavaField[] fields = javaClass.getFields ();
+                for (int i = 0; i < fields.length; i++) {
+                    JavaField member = (JavaField) fields[i];
+                    if (member.getTags ().length > 0) {
                         String key = member.getName ();
                         
                         pw.println ("        attrs = new java.util.HashSet ();");
-                        addExpressions (member.getDoc ().getTags (), pw, "attrs", sourceFile);
+                        addExpressions (member.getTags (), pw, "attrs", sourceFile);
                         pw.println ("        fieldAttributes.put (\"" + key + "\", attrs);");
                         pw.println ("        attrs = null;");
                         pw.println ();
@@ -353,9 +355,11 @@ public class AttributeCompiler extends XJavadocTask {
                 pw.println ("    private void initMethodAttributes () {");
                 pw.println ("        java.util.Set attrs = null;");
                 pw.println ("        java.util.List bundle = null;");
-                for (Iterator iter = xClass.getMethods ().iterator (); iter.hasNext ();) {
-                    XMethod member = (XMethod) iter.next ();
-                    if (member.getDoc ().getTags ().size () > 0) {
+                JavaMethod[] methods = javaClass.getMethods ();
+                
+                for (int i = 0; i < methods.length; i++) {
+                    JavaMethod member = (JavaMethod) methods[i];
+                    if (!member.isConstructor () && member.getTags ().length > 0) {
                         StringBuffer sb = new StringBuffer ();
                         sb.append (member.getName ()).append ("(");
                         sb.append (getParameterTypes (member.getParameters ()));
@@ -364,19 +368,20 @@ public class AttributeCompiler extends XJavadocTask {
                         
                         pw.println ("        bundle = new java.util.ArrayList ();");
                         pw.println ("        attrs = new java.util.HashSet ();");
-                        addExpressions (member.getDoc ().getTags (), null, pw, "attrs", sourceFile);
+                        addExpressions (member.getTags (), null, pw, "attrs", sourceFile);
                         pw.println ("        bundle.add (attrs);");
                         pw.println ("        attrs = null;");
                         
                         pw.println ("        attrs = new java.util.HashSet ();");
-                        addExpressions (member.getDoc ().getTags (), "return", pw, "attrs", sourceFile);
+                        addExpressions (member.getTags (), "return", pw, "attrs", sourceFile);
                         pw.println ("        bundle.add (attrs);");
                         pw.println ("        attrs = null;");
                         
-                        for (Iterator parameters = member.getParameters ().iterator (); parameters.hasNext ();) {
-                            XParameter parameter = (XParameter) parameters.next ();
+                        JavaParameter[] parameters = member.getParameters ();
+                        for (int j = 0; j < parameters.length; j++) {
+                            JavaParameter parameter = (JavaParameter) parameters[j];
                             pw.println ("        attrs = new java.util.HashSet ();");
-                            addExpressions (member.getDoc ().getTags (), parameter.getName (), pw, "attrs", sourceFile);
+                            addExpressions (member.getTags (), parameter.getName (), pw, "attrs", sourceFile);
                             pw.println ("        bundle.add (attrs);");
                             pw.println ("        attrs = null;");
                         }
@@ -394,9 +399,11 @@ public class AttributeCompiler extends XJavadocTask {
                 pw.println ("    private void initConstructorAttributes () {");
                 pw.println ("        java.util.Set attrs = null;");
                 pw.println ("        java.util.List bundle = null;");
-                for (Iterator iter = xClass.getConstructors ().iterator (); iter.hasNext ();) {
-                    XConstructor member = (XConstructor) iter.next ();
-                    if (member.getDoc ().getTags ().size () > 0) {
+                
+                JavaMethod[] constructors = javaClass.getMethods ();
+                for (int i = 0; i < constructors.length; i++) {
+                    JavaMethod member = (JavaMethod) constructors[i];
+                    if (member.isConstructor () && member.getTags ().length > 0) {
                         StringBuffer sb = new StringBuffer ();
                         sb.append ("(");
                         sb.append (getParameterTypes (member.getParameters ()));
@@ -405,14 +412,15 @@ public class AttributeCompiler extends XJavadocTask {
                         
                         pw.println ("        bundle = new java.util.ArrayList ();");
                         pw.println ("        attrs = new java.util.HashSet ();");
-                        addExpressions (member.getDoc ().getTags (), null, pw, "attrs", sourceFile);
+                        addExpressions (member.getTags (), null, pw, "attrs", sourceFile);
                         pw.println ("        bundle.add (attrs);");
                         pw.println ("        attrs = null;");
                         
-                        for (Iterator parameters = member.getParameters ().iterator (); parameters.hasNext ();) {
-                            XParameter parameter = (XParameter) parameters.next ();
+                        JavaParameter[] parameters = member.getParameters ();
+                        for (int j = 0; j < parameters.length; j++) {
+                            JavaParameter parameter = (JavaParameter) parameters[j];
                             pw.println ("        attrs = new java.util.HashSet ();");
-                            addExpressions (member.getDoc ().getTags (), parameter.getName (), pw, "attrs", sourceFile);
+                            addExpressions (member.getTags (), parameter.getName (), pw, "attrs", sourceFile);
                             pw.println ("        bundle.add (attrs);");
                             pw.println ("        attrs = null;");
                         }
@@ -441,23 +449,14 @@ public class AttributeCompiler extends XJavadocTask {
      * @return the file the class is defined in.
      * @throws BuildException if the file could not be found.
      */
-    protected File getSourceFile (XClass xClass) throws BuildException {
-        while (xClass != null && xClass.isInner ()) {
-            xClass = xClass.getContainingClass ();
-        }
-        
-        if (xClass != null && xClass instanceof SourceClass) {
-            AbstractFile af = ((SourceClass) xClass).getFile ();
-            return new File (af.getPath ());
-        }
-        return null;
+    protected File getSourceFile (JavaClass javaClass) throws BuildException {
+        return javaClass.getSource ().getFile ();
     }
     
-    protected boolean hasAttributes (XClass xClass) {
-        if (tagHasAttributes (xClass.getDoc ().getTags ()) ||
-            elementHasAttributes (xClass.getFields ()) ||
-            elementHasAttributes (xClass.getMethods ()) ||
-            elementHasAttributes (xClass.getConstructors ()) ) {
+    protected boolean hasAttributes (JavaClass javaClass) {
+        if (tagHasAttributes (javaClass.getTags ()) ||
+            elementHasAttributes (javaClass.getFields ()) ||
+            elementHasAttributes (javaClass.getMethods ()) ) {
             return true;
         }
         return false;
@@ -467,35 +466,59 @@ public class AttributeCompiler extends XJavadocTask {
      * Tests if a tag is an attribute. Currently the test is
      * only "check if it is defined with two @-signs".
      */
-    protected boolean isAttribute (XTag tag) {
+    protected boolean isAttribute (DocletTag tag) {
         return tag.getName ().length () > 0 && tag.getName ().charAt (0) == '@';
     }
     
-    protected void start() throws BuildException {
+    public void execute () throws BuildException {
         destDir.mkdirs ();
         numGenerated = 0;
         
-        XJavaDoc doc = getXJavaDoc ();
-        Iterator iter = doc.getSourceClasses ().iterator ();
         try {
-            while (iter.hasNext ()) {
-                XClass xClass = (XClass) iter.next ();
-                generateClass (xClass);
+            JavaDocBuilder builder = new JavaDocBuilder ();
+            for (int i = 0; i < fileSets.size (); i++) {
+                FileSet fs = (FileSet) fileSets.get (i);
+                DirectoryScanner ds = fs.getDirectoryScanner(project);
+                File fromDir = fs.getDir(project);
+                
+                String[] srcFiles = ds.getIncludedFiles();
+                
+                for (int j = 0; j < srcFiles.length; j++) {
+                    String srcName = srcFiles[j];
+                    
+                    File sourceFile = new File (fromDir, srcName);
+                    builder.addSource (sourceFile);
+                }
             }
+            
+            JavaClass[] classes = builder.getClasses ();
+            for (int i = 0; i < classes.length; i++) {
+                generateClassAndInners (classes[i]);
+            }
+            
+            log ("Generated attribute information for " + numGenerated + " classes. Ignored " + numIgnored + " classes.");
+        } catch (BuildException be) {
+            throw be;
         } catch (Exception e) {
+            e.printStackTrace ();
             throw new BuildException (e.toString (), e);
+        }        
+    }
+    
+    public void generateClassAndInners (JavaClass clazz) throws Exception {
+        generateClass (clazz);
+        JavaClass[] classes = clazz.getInnerClasses ();
+        for (int i = 0; i < classes.length; i++) {
+            generateClassAndInners (classes[i]);
         }
-        log ("Generated attribute information for " + numGenerated + " classes. Ignored " + numIgnored + " classes.");
     }
     
     /**
      * Checks if a collection of XTags contain any tags specifying attributes.
      */
-    protected boolean tagHasAttributes (Collection tags) {
-        Iterator iter = tags.iterator ();
-        while (iter.hasNext ()) {
-            XTag tag = (XTag) iter.next ();
-            if (isAttribute (tag)) {
+    protected boolean tagHasAttributes (DocletTag[] tags) {
+        for (int i = 0; i < tags.length; i++) {
+            if (isAttribute (tags[i])) {
                 return true;
             }
         }

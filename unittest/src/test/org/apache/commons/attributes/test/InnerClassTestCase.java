@@ -24,16 +24,62 @@ import org.apache.commons.attributes.Attributes;
 import org.apache.commons.attributes.InvalidAttributeTargetError;
 
 public class InnerClassTestCase extends TestCase {
+        
+    public static class AnAttribute {}
     
-    public void testInnerClassAttributesOnMehtod () throws Exception {
+    public static class Internal {
+    }    
+    
+    public static class InnerClassSample {
+      
+        public static class InternalOfSample {
+        }    
+        
+        /**
+         * @@InnerClassTestCase.AnAttribute()
+         */
+        public void method (Internal i) {
+        }
+        
+        /**
+         * @@InnerClassTestCase.AnAttribute()
+         */
+        public void method2 (InternalOfSample i) {
+        }
+        
+        /**
+         * @@InnerClassTestCase.AnAttribute()
+         */
+        public Internal field;
+        
+        /**
+         * @@InnerClassTestCase.AnAttribute()
+         */
+        public InternalOfSample field2;
+        
+    }
+    
+    public void testInnerClassAttributesOnMethod () throws Exception {
         Class sample = InnerClassSample.class;
-        Method method = sample.getMethod ("method", new Class[]{ InnerClassSample.Internal.class });
-        assertTrue (Attributes.getAttributes (method, ThreadSafe.class).size () > 0);
+        Method method = sample.getMethod ("method", new Class[]{ Internal.class });
+        assertTrue (Attributes.getAttributes (method, AnAttribute.class).size () > 0);
+    }
+    
+    public void testInnerClassAttributesOnMethod2 () throws Exception {
+        Class sample = InnerClassSample.class;
+        Method method2 = sample.getMethod ("method2", new Class[]{ InnerClassSample.InternalOfSample.class });
+        assertTrue (Attributes.getAttributes (method2, AnAttribute.class).size () > 0);
     }
     
     public void testInnerClassAttributesOnField () throws Exception {
         Class sample = InnerClassSample.class;
         Field field = sample.getField ("field");
-        assertTrue (Attributes.getAttributes (field, ThreadSafe.class).size () > 0);
+        assertTrue (Attributes.getAttributes (field, AnAttribute.class).size () > 0);
+    }
+    
+    public void testInnerClassAttributesOnField2 () throws Exception {
+        Class sample = InnerClassSample.class;
+        Field field2 = sample.getField ("field2");
+        assertTrue (Attributes.getAttributes (field2, AnAttribute.class).size () > 0);
     }
 }

@@ -24,6 +24,17 @@
     </properties>
     
     <body>
+        <section name="2004-09-10">
+            <ul>
+                <li>
+                    <p>
+                        Ported the code to qDox. XJavadoc had an annoying bug where it would silently rewrite the value of
+                        a JavaDoc tag, making the resulting expression unparseable by the attribute compiler.
+                    </p>
+                </li>
+            </ul>
+        </section>
+        
         <section name="2004-08-27">
             <ul>
                 <li>

@@ -42,9 +42,16 @@
             <version>1.5</version>
         </dependency>
         
+        <!--
         <dependency>
             <id>xdoclet+xjavadoc</id>
             <version>1.0</version>
+        </dependency>
+        -->        
+
+        <dependency>
+            <id>qdox</id>
+            <version>1.5</version>
         </dependency>
         
         <dependency>

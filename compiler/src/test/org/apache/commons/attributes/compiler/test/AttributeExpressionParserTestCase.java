@@ -68,6 +68,22 @@ public class AttributeExpressionParserTestCase extends TestCase {
                 new AttributeExpressionParser.Argument("alpha", "'\"'", 0),
                 new AttributeExpressionParser.Argument("beta", "\"\\\'\"", 0)
                 });
+        
+        /*
+        singleTest ("my.package.AnAttribute( \"sometext,1,2\" , 'a' , ',' , alpha='\"', beta=\"\\\'\")", 
+            "my.package.AnAttribute", new AttributeExpressionParser.Argument[] {
+                new AttributeExpressionParser.Argument(null, "\"sometext,1,2\" ", 0),
+                new AttributeExpressionParser.Argument(null, "'a'", 0),
+                new AttributeExpressionParser.Argument(null, "','", 0),
+                new AttributeExpressionParser.Argument("alpha", "'\"'", 0),
+                new AttributeExpressionParser.Argument("beta", "\"\\\'\"", 0)
+                });
+        */
+        
+        singleTest ("AnAttribute( \"sometext,1,2\" )", 
+            "AnAttribute", new AttributeExpressionParser.Argument[] {
+                new AttributeExpressionParser.Argument(null, " \"sometext,1,2\" ", 0)
+                });
     }
     
 }

@@ -65,10 +65,7 @@
                         <p>Ant task: <a href="http://www.ibiblio.org/maven/commons-attributes/jars/commons-attributes-compiler-2.1.jar">commons-attributes-compiler-2.1.jar</a></p>
                     </li>
                     <li>
-                        <p>Commons Collections 2.1: <a href="http://www.ibiblio.org/maven/commons-collections/jars/commons-collections-2.1.jar">commons-collections-2.1.jar</a></p>
-                    </li>
-                    <li>
-                        <p>Xjavadoc 1.0: <a href="http://www.ibiblio.org/maven/xjavadoc/jars/xjavadoc-1.0.jar">xjavadoc-1.0.jar</a></p>
+                        <p>qDox 1.5: <a href="http://www.ibiblio.org/maven/qdox/jars/qdox-1.5.jar">qdox-1.5.jar</a></p>
                     </li>
                 </ul>
             </subsection>

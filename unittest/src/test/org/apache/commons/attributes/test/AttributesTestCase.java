@@ -98,44 +98,6 @@ public class AttributesTestCase extends TestCase {
         assertTrue (Attributes.hasParameterAttribute (c, 1, new ThreadSafe ()));
     }
     
-    public void testClassInheritance () throws Exception {
-        Class c = Sample.class;
-        assertEquals (5, Attributes.getAttributes (c).size ());
-        assertEquals (4, Attributes.getAttributes (c, Dependency.class).size ());
-        assertTrue (Attributes.hasAttributeType (c, Dependency.class));
-        assertTrue (Attributes.hasAttributeType (c, ThreadSafe.class));
-        assertTrue (Attributes.hasAttribute (c, new Dependency ( SampleService.class, "sample" )));
-        assertTrue (Attributes.hasAttribute (c, new Dependency ( SampleService.class, "super-sample" )));
-        assertTrue (Attributes.hasAttribute (c, new Dependency ( SampleService.class, "sample-if-1-c" )));
-        assertTrue (Attributes.hasAttribute (c, new Dependency ( SampleService.class, "sample-if-2-c" )));
-        assertTrue (Attributes.hasAttribute (c, new ThreadSafe ()));
-    }
-    
-    public void testMethodInheritance () throws Exception {
-        Method m = Sample.class.getMethod ("someMethod", new Class[]{ Integer.TYPE });
-        assertEquals (4, Attributes.getAttributes (m).size ());
-        assertEquals (4, Attributes.getAttributes (m, Dependency.class).size ());
-        assertTrue (Attributes.hasAttributeType (m, Dependency.class));
-        assertTrue (Attributes.hasAttribute (m, new Dependency ( SampleService.class, "super-some-method-sample" )));
-        assertTrue (Attributes.hasAttribute (m, new Dependency ( SampleService.class, "sample-some-method2" ) ));
-        assertTrue (Attributes.hasAttribute (m, new Dependency ( SampleService.class, "sample-if-1" ) ));
-        assertTrue (Attributes.hasAttribute (m, new Dependency ( SampleService.class, "sample-if-2" ) ));
-    }
-    
-    public void testPrivateMethodNonInheritance () throws Exception {
-        Method m = Sample.class.getDeclaredMethod ("privateMethod", new Class[]{});
-        assertEquals (1, Attributes.getAttributes (m).size ());
-        assertEquals (1, Attributes.getAttributes (m, Dependency.class).size ());
-        assertTrue (Attributes.hasAttributeType (m, Dependency.class));
-        assertTrue (Attributes.hasAttribute (m, new Dependency ( SampleService.class, "sample-privateMethod" ) ));
-        
-        m = SuperSample.class.getDeclaredMethod ("privateMethod", new Class[]{});
-        assertEquals (1, Attributes.getAttributes (m).size ());
-        assertEquals (1, Attributes.getAttributes (m, Dependency.class).size ());
-        assertTrue (Attributes.hasAttributeType (m, Dependency.class));
-        assertTrue (Attributes.hasAttribute (m, new Dependency ( SampleService.class, "super-privateMethod" ) ));
-    }
-
     public void testParameterAndReturnAttributes () throws Exception {
         Method m = Sample.class.getMethod ("methodWithAttributes", new Class[]{ Integer.TYPE, Integer.TYPE });
         assertEquals (0, Attributes.getAttributes (m).size ());
@@ -147,35 +109,6 @@ public class AttributesTestCase extends TestCase {
         assertEquals (2, Attributes.getParameterAttributes (m, 1).size ());
         assertTrue (Attributes.hasParameterAttribute (m, 1, new Dependency ( SampleService.class, "sample-if-param-2" ) ));
         assertTrue (Attributes.hasParameterAttribute (m, 1, new ThreadSafe () ));
-    }
-    
-    public void testFieldNonInheritance () throws Exception {
-        Field f = SuperSample.class.getField ("field");
-        assertEquals (2, Attributes.getAttributes (f).size ());
-        assertEquals (1, Attributes.getAttributes (f, ThreadSafe.class).size ());
-        assertEquals (1, Attributes.getAttributes (f, Dependency.class).size ());
-        assertTrue (Attributes.hasAttributeType (f, ThreadSafe.class));
-        assertTrue (Attributes.hasAttributeType (f, Dependency.class));
-        assertTrue (Attributes.hasAttribute (f, new ThreadSafe ()));
-        assertTrue (Attributes.hasAttribute (f, new Dependency ( SampleService.class, "super-field" )));
-        
-        f = Sample.class.getField ("field");
-        assertEquals (1, Attributes.getAttributes (f).size ());
-        assertEquals (1, Attributes.getAttributes (f, ThreadSafe.class).size ());
-        assertTrue (Attributes.hasAttributeType (f, ThreadSafe.class));
-        assertTrue (Attributes.hasAttribute (f, new ThreadSafe ()));
-                
-        f = SuperSample.class.getField ("noAttributesInSubClass");
-        assertEquals (1, Attributes.getAttributes (f).size ());
-        assertEquals (1, Attributes.getAttributes (f, Dependency.class).size ());
-        assertTrue (Attributes.hasAttribute (f, new Dependency ( SampleService.class, "super-noattrs" )));
-        assertTrue (Attributes.hasAttributeType (f, Dependency.class));
-        
-        f = Sample.class.getField ("noAttributesInSubClass");
-        assertEquals (0, Attributes.getAttributes (f).size ());
-        assertEquals (0, Attributes.getAttributes (f, Dependency.class).size ());
-        assertTrue (!Attributes.hasAttribute (f, new Dependency ( SampleService.class, "super-noattrs" )));
-        assertTrue (!Attributes.hasAttributeType (f, Dependency.class));
     }
     
     public void testNoAttributes () throws Exception {

@@ -18,9 +18,20 @@ package org.apache.commons.attributes.test;
 import junit.framework.TestCase;
 
 import org.apache.commons.attributes.Attributes;
+import org.apache.commons.attributes.Target;
 import org.apache.commons.attributes.InvalidAttributeTargetError;
 
 public class TargetTestCase extends TestCase {
+    
+    /**
+     * @@TargetTestCase.AttributeWithTarget()
+     */
+    public static class ClassWithInvalidDeclarations {}
+    
+    /**
+     * @@Target(Target.METHOD)
+     */
+    public static class AttributeWithTarget {}
     
     public void testMethodAttributeOnClass () throws Exception {
         Class clazz1 = ClassWithInvalidDeclarations.class;
@@ -30,8 +41,8 @@ public class TargetTestCase extends TestCase {
             
             fail ();
         } catch (InvalidAttributeTargetError iate) {
-            assertEquals ("Attributes of type org.apache.commons.attributes.test.AttributeWithTarget " + 
-                "can't be applied to org.apache.commons.attributes.test.ClassWithInvalidDeclarations. " + 
+            assertEquals ("Attributes of type org.apache.commons.attributes.test.TargetTestCase$AttributeWithTarget " + 
+                "can't be applied to org.apache.commons.attributes.test.TargetTestCase$ClassWithInvalidDeclarations. " + 
                 "They can only be applied to: METHOD", 
                 iate.getMessage ());
             // OK.

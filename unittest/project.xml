@@ -41,6 +41,7 @@
             <version>1.5</version>
         </dependency>
         
+        <!--
         <dependency>
             <id>xdoclet+xjavadoc</id>
             <version>1.0</version>
@@ -50,7 +51,12 @@
             <id>commons-collections</id>
             <version>2.1</version>
         </dependency>
-       
+        -->
+        
+        <dependency>
+            <id>qdox</id>
+            <version>1.5</version>
+        </dependency>       
         
         <dependency>
             <groupId>commons-attributes</groupId>

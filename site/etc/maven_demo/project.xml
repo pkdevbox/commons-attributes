@@ -39,8 +39,8 @@ A demo of Commons Attributes for Maven users.
         </dependency>
         
         <dependency>
-            <id>xdoclet+xjavadoc</id>
-            <version>1.0</version>
+            <id>qdox</id>
+            <version>1.5</version>
         </dependency>
 
         <dependency>
@@ -52,11 +52,6 @@ A demo of Commons Attributes for Maven users.
         <dependency>
             <id>commons-attributes</id>
             <artifactId>commons-attributes-compiler</artifactId>
-            <version>2.1</version>
-        </dependency>
-        
-        <dependency>
-            <id>commons-collections</id>
             <version>2.1</version>
         </dependency>
     </dependencies>
