@@ -18,29 +18,71 @@ package org.apache.commons.attributes;
 /**
  * Thrown when an attribute repository class can't be
  * loaded or instantiated.
+ *
+ * @since 2.1
  */
 public class RepositoryError extends Error {
-   
+    
     private final Throwable nested;
     
+    /**
+     * Create a new RepositoryError with no message or nested Throwable.
+     *
+     * @since 2.1
+     */
     public RepositoryError () {
         this (null, null);
     }
     
+    /**
+     * Create a new RepositoryError with a message but no nested Throwable.
+     * 
+     * @param message the message.
+     * @since 2.1
+     */
     public RepositoryError (String message) {
         this (message, null);
     }
     
+    /**
+     * Create a new RepositoryError with a nested Throwable. The message is set to <code>nested.toString()</code>.
+     * 
+     * @param nested the nested Throwable.
+     * @since 2.1
+     */
     public RepositoryError (Throwable nested) {
         this (nested.toString(), nested);
     }
     
+    /**
+     * Create a new RepositoryError with a message and nested Throwable. 
+     * 
+     * @param message the message.
+     * @param nested the nested Throwable.
+     * @since 2.1
+     */
     public RepositoryError (String message, Throwable nested) {
         super (message);
         this.nested = nested;
     }
     
+    /**
+     * Get the nested Throwable if any. 
+     * 
+     * @return the Throwable that caused this Error to be thrown, or <code>null</code> if none exists.
+     * @since 2.1
+     */
     public Throwable getNested () {
+        return nested;
+    }
+    
+    /**
+     * Get the nested Throwable, if any.
+     * 
+     * @return the Throwable that caused this Error to be thrown, or <code>null</code> if none exists.
+     * @since 2.2
+     */
+    public Throwable getCause () {
         return nested;
     }
 }

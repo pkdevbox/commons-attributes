@@ -19,6 +19,8 @@ package org.apache.commons.attributes;
  * This attribute is used to mark attributes as being inheritable.
  * Inheritable attributes are inherited down the class and interface
  * hierarchy.
+ *
+ * @since 2.1
  */
 public class Inheritable {
 }

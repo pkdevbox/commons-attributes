@@ -23,6 +23,8 @@ import java.util.Collection;
 
 /**
  * Null implementation of a cached repository.
+ *
+ * @since 2.1
  */
 class EmptyCachedRepository implements CachedRepository {
     

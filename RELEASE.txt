@@ -16,6 +16,11 @@
 
 = Release Notes for Commons-Attributes =
 
+== 2.2 ==
+
+ + Added getCause() to applicable Throwables, making them compliant 
+   with the standard Java2 1.4 nested throwable spec.
+
 == 2.1 ==
 
  + Made the Maven plugin only run the attribute compiler if

@@ -21,9 +21,11 @@ import java.util.List;
 /**
  * Thrown when an attribute repository class can't be
  * loaded because it resulted in a circular dependency.
+ *
+ * @since 2.1
  */
 public class CircularDependencyError extends RepositoryError {
-   
+    
     /**
      * Create a new CircularDependencyError.
      *
@@ -33,6 +35,8 @@ public class CircularDependencyError extends RepositoryError {
      *                       depended on, and so on. The list should
      *                       show the chain of dependencies that resulted
      *                       in the exception being thrown.
+     *
+     * @since 2.1
      */
     public CircularDependencyError (String className, List dependencyList) {
         super (className + ":" + listDeps (dependencyList), null);
@@ -42,6 +46,8 @@ public class CircularDependencyError extends RepositoryError {
      * Joins together the elements of a list with <code>-&gt;</code>
      * delimiters. Used to show the sequence that resulted in the circular
      * dependency.
+     *
+     * @since 2.1
      */
     private static String listDeps (List dependencyList) {
         StringBuffer sb = new StringBuffer ();

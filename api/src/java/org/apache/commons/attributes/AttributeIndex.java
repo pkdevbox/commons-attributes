@@ -37,6 +37,8 @@ import java.util.StringTokenizer;
  * requires that the attribute is {@link Indexed} and that the
  * attribute indexer tool has been run on the jar file containing the
  * classes.
+ *
+ * @since 2.1
  */
 public class AttributeIndex {
     
@@ -44,6 +46,8 @@ public class AttributeIndex {
      * Reference to a method parameter. A method parameter
      * is defined by the Method object it is defined in, and the index
      * of the parameter in the method's parameter list.
+     *
+     * @since 2.1
      */
     public static class MethodParameter {
         
@@ -52,6 +56,8 @@ public class AttributeIndex {
         
         /**
          * Constructs a new MethodParameter.
+         *
+         * @since 2.1
          */
         public MethodParameter (Method method, int index) {
             this.method = method;
@@ -60,6 +66,8 @@ public class AttributeIndex {
         
         /**
          * Get the method this parameter is defined in.
+         *
+         * @since 2.1
          */
         public Method getMethod () {
             return method;
@@ -67,6 +75,8 @@ public class AttributeIndex {
         
         /**
          * Get the index of this parameter in the parameter list of the method.
+         *
+         * @since 2.1
          */
         public int getIndex () {
             return index;
@@ -75,6 +85,8 @@ public class AttributeIndex {
         /**
          * Compares two <code>MethodParameter</code>s for equality.
          * They must point to the same method and have the same index.
+         *
+         * @since 2.1
          */
         public boolean equals (Object o) {
             return o != null && o instanceof MethodParameter &&
@@ -84,6 +96,8 @@ public class AttributeIndex {
         
         /**
          * Computes the hashCode.
+         *
+         * @since 2.1
          */        
         public int hashCode () {
             return method.hashCode () + index;
@@ -91,6 +105,8 @@ public class AttributeIndex {
         
         /**
          * Converts this method parameter into a human-readable string.
+         *
+         * @since 2.1
          */
         public String toString () {
             return method.toString () + ":" + index;
@@ -101,6 +117,8 @@ public class AttributeIndex {
      * A constructor parameter. A method parameter
      * is defined by the Method object it is defined in, and the index
      * of the parameter in the method's parameter list.
+     *
+     * @since 2.1
      */
     public static class ConstructorParameter {
         
@@ -110,6 +128,8 @@ public class AttributeIndex {
         
         /**
          * Constructs a new ConstructorParameter.
+         *
+         * @since 2.1
          */
         public ConstructorParameter (Constructor ctor, int index) {
             this.ctor = ctor;
@@ -118,6 +138,8 @@ public class AttributeIndex {
         
         /**
          * Get the constructor this parameter is defined in.
+         *
+         * @since 2.1
          */
         public Constructor getConstructor () {
             return ctor;
@@ -125,6 +147,8 @@ public class AttributeIndex {
         
         /**
          * Get the index of this parameter in the parameter list of the constructor.
+         *
+         * @since 2.1
          */
         public int getIndex () {
             return index;
@@ -133,6 +157,8 @@ public class AttributeIndex {
         /**
          * Compares two <code>ConstructorParameter</code>s for equality.
          * They must point to the same constructor and have the same index.
+         *
+         * @since 2.1
          */
         public boolean equals (Object o) {
             return o != null && o instanceof ConstructorParameter &&
@@ -142,6 +168,8 @@ public class AttributeIndex {
         
         /**
          * Computes the hashCode.
+         *
+         * @since 2.1
          */    
         public int hashCode () {
             return ctor.hashCode () + index;
@@ -149,6 +177,8 @@ public class AttributeIndex {
         
         /**
          * Converts this constructor parameter into a human-readable string.
+         *
+         * @since 2.1
          */
         public String toString () {
             return ctor.toString () + ":" + index;
@@ -184,6 +214,8 @@ public class AttributeIndex {
     
     /**
      * Creates a new AttributeIndex for the given ClassLoader.
+     *
+     * @since 2.1
      */
     public AttributeIndex (ClassLoader cl) throws Exception {
         this.classLoader = cl;
@@ -321,6 +353,8 @@ public class AttributeIndex {
     
     /**
      * Load the attrs.index from a given URL.
+     *
+     * @since 2.1
      */
     private void loadFromURL (URL url) throws Exception {
         URLConnection connection = url.openConnection ();
@@ -344,6 +378,8 @@ public class AttributeIndex {
      * The Collection contains the class names (String).
      * 
      * @deprecated Use the getClasses(Class) method instead.
+     *
+     * @since 2.1
      */    
     public Collection getClassesWithAttribute (String attributeClass) {
         if (index.containsKey (attributeClass)) {
@@ -372,6 +408,8 @@ public class AttributeIndex {
     /**
      * Gets a Collection of the <code>Class</code>es that have an attribute of the specified class.
      * The Collection contains the classes (Class).
+     *
+     * @since 2.1
      */    
     public Collection getClasses (Class attributeClass) {
         if (index.containsKey (attributeClass.getName ())) {
@@ -384,6 +422,8 @@ public class AttributeIndex {
     /**
      * Gets a Collection of the <code>Method</code>s that have an attribute of the specified class.
      * The Collection contains the methods (java.lang.reflect.Method).
+     *
+     * @since 2.1
      */    
     public Collection getMethods (Class attributeClass) {
         if (index.containsKey (attributeClass.getName ())) {
@@ -396,6 +436,8 @@ public class AttributeIndex {
     /**
      * Gets a Collection of the <code>Method</code>s whose return value has an attribute of the specified class.
      * The Collection contains the methods (java.lang.reflect.Method).
+     *
+     * @since 2.1
      */    
     public Collection getMethodsReturning (Class attributeClass) {
         if (index.containsKey (attributeClass.getName ())) {
@@ -408,6 +450,8 @@ public class AttributeIndex {
     /**
      * Gets a Collection of the <code>Field</code>s that have an attribute of the specified class.
      * The Collection contains the methods (java.lang.reflect.Field).
+     *
+     * @since 2.1
      */    
     public Collection getFields (Class attributeClass) {
         if (index.containsKey (attributeClass.getName ())) {
@@ -420,6 +464,8 @@ public class AttributeIndex {
     /**
      * Gets a Collection of the <code>Constructor</code>s that have an attribute of the specified class.
      * The Collection contains the methods (java.lang.reflect.Constructor).
+     *
+     * @since 2.1
      */    
     public Collection getConstructors (Class attributeClass) {
         if (index.containsKey (attributeClass.getName ())) {
@@ -432,6 +478,8 @@ public class AttributeIndex {
     /**
      * Gets a Collection of the <code>ConstructorParameter</code>s that have an attribute of the specified class.
      * The Collection contains the methods ({@link AttributeIndex.ConstructorParameter}).
+     *
+     * @since 2.1
      */    
     public Collection getConstructorParameters (Class attributeClass) {
         if (index.containsKey (attributeClass.getName ())) {
@@ -444,6 +492,8 @@ public class AttributeIndex {
     /**
      * Gets a Collection of the <code>MethodParameter</code>s that have an attribute of the specified class.
      * The Collection contains the methods ({@link AttributeIndex.MethodParameter}).
+     *
+     * @since 2.1
      */    
     public Collection getMethodParameters (Class attributeClass) {
         if (index.containsKey (attributeClass.getName ())) {

@@ -25,23 +25,34 @@ import java.util.List;
  * <p>For example:
  *
  * <pre><code>
- * / **
- *   * This attribute can only be applied to Classes.
- *   * Target(Target.CLASS)
- *   * /
+ * &#x2f;**
+ *  * This attribute can only be applied to Classes.
+ *  * Target(Target.CLASS)
+ *  *&#x2f;
  * public class MyAttribute {}
  *
  * public class MyClass {
- *     / ** 
+ *     &#x2f;** 
  *       * Error: Can't apply MyAttribute to a field!
- *       * MyAttribute() 
- *       * /
+ *       * &#x40;&#x40;MyAttribute() 
+ *       *&#x2f;
  *     private String myField;
  * }
  * </code></pre>
+ *
+ * @since 2.1
  */
 public class InvalidAttributeTargetError extends Error {
     
+    /**
+     * Creates a new InvalidAttributeTargetError.
+     *
+     * @param attributeClass name of the type of the attribute that was applied to the wrong target.
+     * @param element        the element that the user tried to apply the attribute to.
+     * @param targetFlags    the targets (bitwise OR of the {@link Target}.XXX flags that the attributeClass
+     *                       can be applied to.
+     * @since 2.1
+     */
     public InvalidAttributeTargetError (String attributeClass, String element, int targetFlags) {
         super ("Attributes of type " + attributeClass + " can't be applied to " + element + ". " + 
             "They can only be applied to: " + flagsToString (targetFlags));

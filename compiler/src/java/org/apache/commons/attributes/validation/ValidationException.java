@@ -18,6 +18,8 @@ package org.apache.commons.attributes.validation;
 /**
  * Thrown by {@link AttributeValidator}s when an invalid set of
  * attributes are detected.
+ *
+ * @since 2.1
  */
 public class ValidationException extends Exception {
     
@@ -29,6 +31,7 @@ public class ValidationException extends Exception {
      * @param invalidClass the class whose attributes are
      *                     invalid.
      * @param message a message describing why the attributes are invalid.
+ * @since 2.1
      */
     public ValidationException (Class invalidClass, String message) {
         super (message);
@@ -38,6 +41,7 @@ public class ValidationException extends Exception {
     /**
      * Returns the class that triggered the ValidationExeption to
      * be thrown.
+ * @since 2.1
      */
     public Class getInvalidClass () {
         return invalidClass;

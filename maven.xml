@@ -27,23 +27,23 @@
     
     <property name="javadoc14.jar" value="${maven.repo.local}/javadoc/jars/javadoc-1.4.jar"/>
     
-  <!-- ================================================================== -->
-  <!-- START : C O M M O N S - B U I L D                                  -->
-  <!-- ================================================================== -->
-  <!-- Required: Look and Feel for documentation within distributions     -->
-  <!-- ================================================================== -->
-  <postGoal name="xdoc:copy-resources">  
-    <copy todir="${basedir}/target/docs/style/" failonerror="false">
-      <fileset dir="${basedir}/../commons-build/xdocs/style">
-      	<include name='**/*'/>
-      	<exclude name='**/CVS/**'/>
-      </fileset>
-    </copy>
-  </postGoal>
-  <!-- ================================================================== -->
-  <!-- END: C O M M O N S - B U I L D                                     -->
-  <!-- ================================================================== -->
-
+    <!-- ================================================================== -->
+    <!-- START : C O M M O N S - B U I L D                                  -->
+    <!-- ================================================================== -->
+    <!-- Required: Look and Feel for documentation within distributions     -->
+    <!-- ================================================================== -->
+    <postGoal name="xdoc:copy-resources">  
+        <copy todir="${basedir}/target/docs/style/" failonerror="false">
+            <fileset dir="${basedir}/../commons-build/xdocs/style">
+                <include name='**/*'/>
+                <exclude name='**/CVS/**'/>
+            </fileset>
+        </copy>
+    </postGoal>
+    <!-- ================================================================== -->
+    <!-- END: C O M M O N S - B U I L D                                     -->
+    <!-- ================================================================== -->
+    
     <goal name="attributes:help"
         description="Print some help.">
         <echo><![CDATA[
@@ -269,9 +269,9 @@ the javadoc API classes into a Maven repository...
         <mkdir dir="${basedir}/target/docs/api" />
         <property name="copyright"
             value="Copyright &amp;copy; ${year} ${pom.organization.name}. All Rights Reserved." />
-        <property name="title" value="${pom.name} ${pom.currentVersion} API"/>
+        <property name="title" value="Commons-${pom.name} ${pom.currentVersion} API"/>
         <javadoc destdir="${basedir}/target/docs/api" 
-            doctitle="&lt;h1&gt;Jakarta Commons Attributes&lt;/h1&gt;" 
+            doctitle="&lt;h1&gt;Jakarta Commons Attributes 2.2&lt;/h1&gt;" 
             noindex="false" author="true" use="true"
             windowtitle="${title}" 
             bottom="${copyright}"

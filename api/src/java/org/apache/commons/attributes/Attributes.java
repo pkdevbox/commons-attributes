@@ -86,6 +86,8 @@ import java.util.WeakHashMap;
  * </code></pre>
  *
  * if the loop should run at maximum speed.
+ *
+ * @since 2.1
  */
 public class Attributes {
     
@@ -188,6 +190,8 @@ public class Attributes {
      * @return the attribute instance, or null of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
+     *
+     * @since 2.1
      */
     public static Object getAttribute (Class clazz, Class attributeClass) throws RepositoryError, MultipleAttributesError {
         return getAttribute (getAttributes (clazz), attributeClass);
@@ -199,6 +203,8 @@ public class Attributes {
      * @return the attribute instance, or null of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
+     *
+     * @since 2.1
      */
     public static Object getAttribute (Field field, Class attributeClass) throws RepositoryError, MultipleAttributesError {
         return getAttribute (getAttributes (field), attributeClass);
@@ -210,6 +216,8 @@ public class Attributes {
      * @return the attribute instance, or null of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
+     *
+     * @since 2.1
      */
     public static Object getAttribute (Constructor ctor, Class attributeClass) throws RepositoryError, MultipleAttributesError {
         return getAttribute (getAttributes (ctor), attributeClass);
@@ -221,6 +229,8 @@ public class Attributes {
      * @return the attribute instance, or null of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
+     *
+     * @since 2.1
      */
     public static Object getAttribute (Method method, Class attributeClass) throws RepositoryError, MultipleAttributesError {
         return getAttribute (getAttributes (method), attributeClass);
@@ -232,6 +242,8 @@ public class Attributes {
      * @return the attribute instance, or null of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
+     *
+     * @since 2.1
      */
     public static Object getParameterAttribute (Method method, int parameter, Class attributeClass) throws RepositoryError, MultipleAttributesError {
         return getAttribute (getParameterAttributes (method, parameter), attributeClass);
@@ -243,6 +255,8 @@ public class Attributes {
      * @return the attribute instance, or null of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
+     *
+     * @since 2.1
      */
     public static Object getParameterAttribute (Constructor constructor, int parameter, Class attributeClass) throws RepositoryError, MultipleAttributesError {
         return getAttribute (getParameterAttributes (constructor, parameter), attributeClass);
@@ -254,6 +268,8 @@ public class Attributes {
      * @return the attribute instance, or null of none could be found.
      * @throws MultipleAttributesError if the collection contains more than one
      *         instance of the specified class.
+     *
+     * @since 2.1
      */
     public static Object getReturnAttribute (Method method, Class attributeClass) throws RepositoryError, MultipleAttributesError {
         return getAttribute (getReturnAttributes (method), attributeClass);
@@ -261,6 +277,8 @@ public class Attributes {
     
     /**
      * Gets all attributes for a class.
+     *
+     * @since 2.1
      */
     public static Collection getAttributes (Class clazz) throws RepositoryError {
         if (clazz == null) {
@@ -272,6 +290,8 @@ public class Attributes {
     
     /**
      * Gets all attributes for a method.
+     *
+     * @since 2.1
      */
     public static Collection getAttributes (Method method) throws RepositoryError {
         if (method == null) {
@@ -283,6 +303,8 @@ public class Attributes {
     
     /**
      * Gets all attributes for a parameter of a method.
+     *
+     * @since 2.1
      */
     public static Collection getParameterAttributes (Method method, int parameter) throws RepositoryError {
         return getCachedRepository (method.getDeclaringClass()).getParameterAttributes (method, parameter);
@@ -290,6 +312,8 @@ public class Attributes {
     
     /**
      * Gets all attributes for a parameter of a constructor.
+     *
+     * @since 2.1
      */
     public static Collection getParameterAttributes (Constructor constructor, int parameter) throws RepositoryError {
         if (constructor == null) {
@@ -300,6 +324,8 @@ public class Attributes {
     
     /**
      * Gets all attributes for the return value of a method.
+     *
+     * @since 2.1
      */
     public static Collection getReturnAttributes (Method method) throws RepositoryError {
         if (method == null) {
@@ -310,6 +336,8 @@ public class Attributes {
     
     /**
      * Gets all attributes for a field.
+     *
+     * @since 2.1
      */
     public static Collection getAttributes (Field field) throws RepositoryError {
         if (field == null) {
@@ -320,6 +348,8 @@ public class Attributes {
     
     /**
      * Gets all attributes for a constructor.
+     *
+     * @since 2.1
      */
     public static Collection getAttributes (Constructor cons) throws RepositoryError {
         if (cons == null) {
@@ -330,6 +360,8 @@ public class Attributes {
     
     /**
      * Selects from a collection of attributes only those with a given class.
+     *
+     * @since 2.1
      */
     private static Collection getAttributes (Collection attrs, Class attributeClass) {
         HashSet result = new HashSet ();
@@ -347,6 +379,8 @@ public class Attributes {
     /**
      * Get all attributes of a given type from a class. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
+     *
+     * @since 2.1
      */
     public static Collection getAttributes (Class clazz, Class attributeClass) throws RepositoryError {
         return getAttributes (getAttributes (clazz), attributeClass);
@@ -355,6 +389,8 @@ public class Attributes {
     /**
      * Get all attributes of a given type from a field. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
+     *
+     * @since 2.1
      */
     public static Collection getAttributes (Field field, Class attributeClass) throws RepositoryError {
         return getAttributes (getAttributes (field), attributeClass);
@@ -363,6 +399,8 @@ public class Attributes {
     /**
      * Get all attributes of a given type from a constructor. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
+     *
+     * @since 2.1
      */
     public static Collection getAttributes (Constructor ctor, Class attributeClass) throws RepositoryError {
         return getAttributes (getAttributes (ctor), attributeClass);
@@ -371,6 +409,8 @@ public class Attributes {
     /**
      * Get all attributes of a given type from a method. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
+     *
+     * @since 2.1
      */
     public static Collection getAttributes (Method method, Class attributeClass) throws RepositoryError {
         return getAttributes (getAttributes (method), attributeClass);
@@ -379,6 +419,8 @@ public class Attributes {
     /**
      * Get all attributes of a given type from a method's parameter. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
+     *
+     * @since 2.1
      */
     public static Collection getParameterAttributes (Method method, int parameter, Class attributeClass) throws RepositoryError {
         return getAttributes (getParameterAttributes (method, parameter), attributeClass);
@@ -387,6 +429,8 @@ public class Attributes {
     /**
      * Get all attributes of a given type from a method's parameter. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
+     *
+     * @since 2.1
      */
     public static Collection getParameterAttributes (Constructor constructor, int parameter, Class attributeClass) throws RepositoryError {
         return getAttributes (getParameterAttributes (constructor, parameter), attributeClass);
@@ -395,6 +439,8 @@ public class Attributes {
     /**
      * Get all attributes of a given type from a method's return value. For all objects o in the returned 
      * collection, <code>o.getClass() == attributeClass</code>.
+     *
+     * @since 2.1
      */
     public static Collection getReturnAttributes (Method method, Class attributeClass) throws RepositoryError {
         return getAttributes (getReturnAttributes (method), attributeClass);
@@ -403,6 +449,8 @@ public class Attributes {
     /**
      * Convenience function to test whether a collection of attributes contain
      * an attribute of a given class.
+     *
+     * @since 2.1
      */
     private static boolean hasAttributeType (Collection attrs, Class attributeClass) {
         Iterator iter = attrs.iterator ();
@@ -419,6 +467,8 @@ public class Attributes {
     /**
      * Tests if a class has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasAttributeType (Class clazz, Class attributeClass) throws RepositoryError {
         return hasAttributeType (getAttributes (clazz), attributeClass);
@@ -427,6 +477,8 @@ public class Attributes {
     /**
      * Tests if a field has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasAttributeType (Field field, Class attributeClass) throws RepositoryError {
         return hasAttributeType (getAttributes (field), attributeClass);
@@ -435,6 +487,8 @@ public class Attributes {
     /**
      * Tests if a constructor has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasAttributeType (Constructor ctor, Class attributeClass) throws RepositoryError {
         return hasAttributeType (getAttributes (ctor), attributeClass);
@@ -443,6 +497,8 @@ public class Attributes {
     /**
      * Tests if a method has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasAttributeType (Method method, Class attributeClass) throws RepositoryError {
         return hasAttributeType (getAttributes (method), attributeClass);
@@ -451,6 +507,8 @@ public class Attributes {
     /**
      * Tests if a method's parameter has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasParameterAttributeType (Method method, int parameter, Class attributeClass) throws RepositoryError {
         return hasAttributeType (getParameterAttributes (method, parameter), attributeClass);
@@ -459,6 +517,8 @@ public class Attributes {
     /**
      * Tests if a constructor's parameter has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasParameterAttributeType (Constructor constructor, int parameter, Class attributeClass) throws RepositoryError {
         return hasAttributeType (getParameterAttributes (constructor, parameter), attributeClass);
@@ -467,6 +527,8 @@ public class Attributes {
     /**
      * Tests if a method's return value has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasReturnAttributeType (Method method, Class attributeClass) throws RepositoryError {
         return hasAttributeType (getReturnAttributes (method), attributeClass);
@@ -475,6 +537,8 @@ public class Attributes {
     /**
      * Convenience function to test whether a collection of attributes contain
      * an attribute.
+     *
+     * @since 2.1
      */
     private static boolean hasAttribute (Collection attrs, Object attribute) throws RepositoryError {
         return attrs.contains (attribute);
@@ -483,6 +547,8 @@ public class Attributes {
     /**
      * Tests if a class has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasAttribute (Class clazz, Object attribute) throws RepositoryError {
         return hasAttribute (getAttributes (clazz), attribute);
@@ -491,6 +557,8 @@ public class Attributes {
     /**
      * Tests if a field has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasAttribute (Field field, Object attribute) throws RepositoryError {
         return hasAttribute (getAttributes (field), attribute);
@@ -499,6 +567,8 @@ public class Attributes {
     /**
      * Tests if a constructor has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasAttribute (Constructor ctor, Object attribute) throws RepositoryError {
         return hasAttribute (getAttributes (ctor), attribute);
@@ -507,6 +577,8 @@ public class Attributes {
     /**
      * Tests if a method has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasAttribute (Method method, Object attribute) throws RepositoryError {
         return hasAttribute (getAttributes (method), attribute);
@@ -515,6 +587,8 @@ public class Attributes {
     /**
      * Tests if a method's parameter has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasParameterAttribute (Method method, int parameter, Object attribute) throws RepositoryError {
         return hasAttribute (getParameterAttributes (method, parameter), attribute);
@@ -523,6 +597,8 @@ public class Attributes {
     /**
      * Tests if a constructor's parameter has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasParameterAttribute (Constructor constructor, int parameter, Object attribute) throws RepositoryError {
         return hasAttribute (getParameterAttributes (constructor, parameter), attribute);
@@ -531,6 +607,8 @@ public class Attributes {
     /**
      * Tests if a method's return value has an attribute. That is, is there any attribute
      * <code>attr</code> such that <code>attr.equals(attribute)</code>?
+     *
+     * @since 2.1
      */
     public static boolean hasReturnAttribute (Method method, Object attribute) throws RepositoryError {
         return hasAttribute (getReturnAttributes (method), attribute);
@@ -547,6 +625,7 @@ public class Attributes {
      *             during setting.
      * @throws IllegalStateException if the class whose attributes are defined already have
      *         attributes defined for it (even if it has no attributes).
+     * @since 2.1
      */
     public static synchronized void setAttributes (RuntimeAttributeRepository repo) throws IllegalStateException {
         repo.seal ();

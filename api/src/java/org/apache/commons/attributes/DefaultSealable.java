@@ -18,6 +18,8 @@ package org.apache.commons.attributes;
 /**
  * Implementation of the {@link Sealable} interface. Subclasses should call
  * {@link #checkSealed()} before setting any bean properties.
+ *
+ * @since 2.1
  */
 public class DefaultSealable implements Sealable {
     
@@ -25,8 +27,11 @@ public class DefaultSealable implements Sealable {
      * Boolean flag indicating whether the {@link seal()} method
      * has been called.
      */
-    private boolean sealed = false;
+    private volatile boolean sealed = false;
     
+    /** 
+     * Default ctor.
+     */
     public DefaultSealable () {
     }
     
@@ -35,6 +40,8 @@ public class DefaultSealable implements Sealable {
      * <code>IllegalStateException</code> if it has.
      *
      * @throws IllegalStateException if this attribute has been sealed.
+     *
+     * @since 2.1
      */
     protected void checkSealed () throws IllegalStateException {
         if (sealed) {
@@ -46,6 +53,8 @@ public class DefaultSealable implements Sealable {
      * Seals this attribute. Any future calls to the
      * {@link #checkSealed()} method will result in an 
      * <code>IllegalStateException</code> being thrown.
+     *
+     * @since 2.1
      */
     public void seal () {
         this.sealed = true;

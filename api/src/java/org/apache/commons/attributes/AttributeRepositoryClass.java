@@ -23,12 +23,16 @@ import java.util.Map;
  * This interface is used internally and should not be used
  * by clients. The only reason it is public is because the
  * classes implementing it may be in any package.
+ *
+ * @since 2.1
  */
 public interface AttributeRepositoryClass {
     
     /**
      * Returns a set containing all attributes (instances) associated with this class.
      * Should not return any attributes of superclasses etc.
+     *
+     * @since 2.1
      */
     public Set getClassAttributes ();
     
@@ -36,6 +40,8 @@ public interface AttributeRepositoryClass {
      * Returns a map with String keys and Set values. The keys correspond to field names,
      * and their associated Set values are the set of all attributes (instances) associated with that field.
      * Should not return any attributes of superclasses etc.
+     *
+     * @since 2.1
      */
     public Map getFieldAttributes ();
     
@@ -50,7 +56,9 @@ public interface AttributeRepositoryClass {
      *
      * All slots in the list must be filled, not just those where there are attributes.
      * 
-     * Should not return any attributes of superclasses etc.
+     * <p>Should not return any attributes of superclasses etc.
+     *
+     * @since 2.1
      */
     public Map getMethodAttributes ();
     
@@ -64,7 +72,9 @@ public interface AttributeRepositoryClass {
      *
      * All slots in the list must be filled, not just those where there are attributes.
      * 
-     * Should not return any attributes of superclasses etc.
+     * <p>Should not return any attributes of superclasses etc.
+     *
+     * @since 2.1
      */
     public Map getConstructorAttributes ();
 }

@@ -30,11 +30,14 @@ package org.apache.commons.attributes;
  * and of so, invoke {@link #seal()} on the attribute instance.
  * 
  * @see DefaultSealable
+ * @since 2.1
  */
 public interface Sealable {
     /**
      * Called to indicate that construction and initialization of this attribute instance
      * is completed, and that the attribute instance should become read-only.
+     *
+ * @since 2.1
      */
     public void seal ();
 }

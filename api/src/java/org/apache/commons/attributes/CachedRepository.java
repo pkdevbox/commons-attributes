@@ -23,6 +23,8 @@ import java.util.Collection;
 /**
  * An attribute repository cache. Used internally to speed up operation.
  * All collections returned should be unmodifiable.
+ *
+ * @since 2.1
  */
 interface CachedRepository {
     

@@ -24,6 +24,22 @@
     </properties>
     
     <body>
+        <section name="2004-08-26">
+            <ul>
+                <li>
+                    <p>
+                        Added <source>getCause()</source> to applicable Throwables, making them
+                        compliant with the standard Java2 1.4 nested throwable spec.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        CVS version number is now 2.2.
+                    </p>
+                </li>
+            </ul>
+        </section>
+        
         <section name="2004-07-24">
             <ul>
                 <li>

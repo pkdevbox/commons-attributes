@@ -30,6 +30,8 @@ import java.util.WeakHashMap;
 
 /**
  * Commonly used convenience functions.
+ *
+ * @since 2.1
  */
 public class AttributeUtil {
     
@@ -44,6 +46,8 @@ public class AttributeUtil {
      * @param classes Collection of Classes to filter. May contain <code>null</code> references,
      *                but may not itself be <code>null</code>.
      * @param attributeClass the class to filter based on.
+     *
+     * @since 2.1
      */
     public static Collection getClassesWithAttributeType (Collection classes, Class attributeClass) {
         if (classes == null) {
@@ -79,6 +83,8 @@ public class AttributeUtil {
      * @param objects Collection of objects to filter. May contain <code>null</code> references,
      *                but may not itself be <code>null</code>.
      * @param attributeClass the class to filter based on.
+     *
+     * @since 2.1
      */
     public static Collection getObjectsWithAttributeType (Collection objects, Class attributeClass) {
         if (objects == null) {

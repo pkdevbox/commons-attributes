@@ -21,6 +21,8 @@ import java.util.Map;
 
 /**
  * Empty implementation of AttributeRepositoryClass.
+ *
+ * @since 2.1
  */
 class EmptyAttributeRepositoryClass implements AttributeRepositoryClass {
     

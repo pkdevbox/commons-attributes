@@ -29,6 +29,10 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.HashMap;
 
+/**
+ *
+ * @since 2.1
+ */
 class DefaultCachedRepository implements CachedRepository {
     
     private final static Collection EMPTY_COLLECTION = new ArrayList (0);

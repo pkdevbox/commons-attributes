@@ -22,9 +22,11 @@ package org.apache.commons.attributes;
  * run the attribute-indexer tool on the Jar-file containing the classes
  * you wish to find via the index.
  *
- * <p><b>Note:</b> Indexed attributes that are inherited will not be found
- * via an {@link AttributeIndex}. You will only find the class/method/field where
- * the attribute is actually declared via the index.
+ * <p><b>Note regarding {@link Inheritable} attributes:</b> Indexed attributes 
+ * that are inherited will not be found via an {@link AttributeIndex}. You will 
+ * only find the class/method/field where the attribute is actually declared via the index.
+ *
+ * @since 2.1
  */
 public class Indexed {
 }

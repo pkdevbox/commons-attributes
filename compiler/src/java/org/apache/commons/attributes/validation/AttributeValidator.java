@@ -21,6 +21,8 @@ import java.util.Set;
  * Validates that a set of classes have the correct attributes
  * attached to them. This interface must be implemented by the
  * validation rules given to the {@link AttributeValidatorTask}.
+ *
+ * @since 2.1
  */
 public interface AttributeValidator {
     
@@ -30,6 +32,7 @@ public interface AttributeValidator {
      * @param classes the classes to validate.
      * @throws ValidationException if one or more classes have
      *         an invalid set of attributes.
+     * @since 2.1
      */
     public void validate (Set classes) throws ValidationException;
 }

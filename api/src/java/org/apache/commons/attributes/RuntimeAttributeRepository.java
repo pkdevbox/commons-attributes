@@ -62,6 +62,8 @@ import java.util.List;
  *         }
  *     }
  * </code></pre>
+ *
+ * @since 2.1
  */
 public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     
@@ -69,25 +71,25 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
      * Flag indicating whether this repository is modifiable.
      * Once sealed, a repository can't be un-sealed.
      */
-    private boolean sealed = false;
+    private volatile boolean sealed = false;
     
     /**
-     * Set of class attributes. See javadoc for <code>AttributeRepositoryClass</code> for structure.
+     * Set of class attributes. See javadoc for {@link AttributeRepositoryClass} for structure.
      */
     private final Set classAttributes = new HashSet ();
     
     /**
-     * Set of field attributes. See javadoc for <code>AttributeRepositoryClass</code> for structure.
+     * Set of field attributes. See javadoc for {@link AttributeRepositoryClass} for structure.
      */
     private final Map fieldAttributes = new HashMap ();
     
     /**
-     * Set of ctor attributes. See javadoc for <code>AttributeRepositoryClass</code> for structure.
+     * Set of ctor attributes. See javadoc for {@link AttributeRepositoryClass} for structure.
      */
     private final Map constructorAttributes = new HashMap ();
     
     /**
-     * Set of method attributes. See javadoc for <code>AttributeRepositoryClass</code> for structure.
+     * Set of method attributes. See javadoc for {@link AttributeRepositoryClass} for structure.
      */
     private final Map methodAttributes = new HashMap ();
     
@@ -98,6 +100,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     
     /**
      * Create a new runtime repository.
+     *
+     * @since 2.1
      */
     public RuntimeAttributeRepository (Class clazz) {
         this.clazz = clazz;
@@ -105,6 +109,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     
     /**
      * Adds a new attribute to the class itself.
+     *
+     * @since 2.1
      */
     public void addClassAttribute (Object attribute) {
         classAttributes.add (attribute);
@@ -114,6 +120,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
      * Convenience function to check if the repository is sealed.
      * 
      * @throws IllegalStateException if sealed
+     *
+     * @since 2.1
      */
     private void checkSealed () throws IllegalStateException {
         if (sealed) {
@@ -124,6 +132,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     /**
      * Convenience method to get and initialize an enry in the method or
      * constructor attribute map.
+     *
+     * @since 2.1
      */
     private List getMethodOrConstructorAttributeBundle (Map map, String signature, int numSlots) {
         List bundle = (List) map.get (signature);
@@ -142,8 +152,10 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     /**
      * Convenience method to get and initialize an entry in the method map.
      *
-     * @return a fully initialized List (as defined for the <code>AttributeRepositoryClass</code> interface)
+     * @return a fully initialized List (as defined for the {@link AttributeRepositoryClass} interface)
      *         for the given method.
+     *
+     * @since 2.1
      */
     private List getMethodAttributeBundle (Method m) {
         String signature = Util.getSignature (m);
@@ -158,8 +170,10 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     /**
      * Convenience method to get and initialize an entry in the constructor map.
      *
-     * @return a fully initialized List (as defined for the <code>AttributeRepositoryClass</code> interface)
+     * @return a fully initialized List (as defined for the {@link AttributeRepositoryClass} interface)
      *         for the given constructor.
+     *
+     * @since 2.1
      */
     private List getConstructorAttributeBundle (Constructor c) {
         String signature = Util.getSignature (c);
@@ -173,6 +187,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     
     /**
      * Adds an attribute to a field.
+     *
+     * @since 2.1
      */
     public void addFieldAttribute (String name, Object attribute) throws NoSuchFieldException, SecurityException {
         addFieldAttribute (clazz.getDeclaredField (name), attribute);
@@ -180,6 +196,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     
     /**
      * Adds an attribute to a field.
+     *
+     * @since 2.1
      */
     public void addFieldAttribute (Field f, Object attribute) {
         checkSealed ();
@@ -201,6 +219,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     /**
      * Adds an attribute to a constructor. The constructor is obtained via the getDeclaredConstrutor method 
      * of the class this repository defines.
+     *
+     * @since 2.1
      */
     public void addConstructorAttribute (Class[] parameters, Object attribute) throws NoSuchMethodException, SecurityException {
         addConstructorAttribute (clazz.getDeclaredConstructor (parameters), attribute);
@@ -208,6 +228,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     
     /**
      * Adds an attribute to a constructor.
+     *
+     * @since 2.1
      */
     public void addConstructorAttribute (Constructor c, Object attribute) {
         checkSealed ();
@@ -219,11 +241,18 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     /**
      * Adds an attribute to a method. The method is obtained via the getDeclaredMethod method 
      * of the class this repository defines.
+     *
+     * @since 2.1
      */
     public void addMethodAttribute (String name, Class[] parameters, Object attribute) throws NoSuchMethodException, SecurityException {
         addMethodAttribute (clazz.getDeclaredMethod (name, parameters), attribute);
     }
     
+    /**
+     * Adds an attribute to a method.
+     *
+     * @since 2.1
+     */
     public void addMethodAttribute (Method m, Object attribute) {
         checkSealed ();
         List bundle = getMethodAttributeBundle (m);
@@ -234,6 +263,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     /**
      * Adds an attribute to a parameter of a constructor. The constructor is obtained via the getDeclaredConstrutor method 
      * of the class this repository defines.
+     *
+     * @since 2.1
      */
     public void addParameterAttribute (Class[] parameters, int parameterIndex, Object attribute) throws NoSuchMethodException, SecurityException {
         addParameterAttribute (clazz.getDeclaredConstructor (parameters), parameterIndex, attribute);
@@ -241,6 +272,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     
     /**
      * Adds an attribute to a parameter of a constructor. 
+     *
+     * @since 2.1
      */
     public void addParameterAttribute (Constructor c, int parameterIndex, Object attribute) {
         checkSealed ();
@@ -254,6 +287,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     /**
      * Adds an attribute to a parameter of a method. The method is obtained via the getDeclaredMethod method 
      * of the class this repository defines.
+     *
+     * @since 2.1
      */
     public void addParameterAttribute (String name, Class[] parameters, int parameterIndex, Object attribute) throws NoSuchMethodException, SecurityException {
         addParameterAttribute (clazz.getDeclaredMethod (name, parameters), parameterIndex, attribute);
@@ -262,6 +297,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     /**
      * Adds an attribute to a parameter of a method. The method is obtained via the getDeclaredMethod method 
      * of the class this repository defines.
+     *
+     * @since 2.1
      */
     public void addParameterAttribute (Method m, int parameterIndex, Object attribute) {
         checkSealed ();
@@ -274,6 +311,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     /**
      * Adds an attribute to the return value of a method. The method is obtained via the getDeclaredMethod method 
      * of the class this repository defines.
+     *
+     * @since 2.1
      */
     public void addReturnAttribute (String name, Class[] parameters, Object attribute) throws NoSuchMethodException, SecurityException {
         addReturnAttribute (clazz.getDeclaredMethod (name, parameters), attribute);
@@ -282,6 +321,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     /**
      * Adds an attribute to the return value of a method. The method is obtained via the getDeclaredMethod method 
      * of the class this repository defines.
+     *
+     * @since 2.1
      */
     public void addReturnAttribute (Method m, Object attribute) {
         checkSealed ();
@@ -294,6 +335,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     
     /**
      * Gets the class this repository defines attributes for.
+     *
+     * @since 2.1
      */
     public Class getDefinedClass () {
         return clazz;
@@ -317,6 +360,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     
     /**
      * Seals this repository. A sealed repository can't be modified.
+     *
+     * @since 2.1
      */
     public void seal () {
         sealed = true;

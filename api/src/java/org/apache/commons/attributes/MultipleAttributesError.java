@@ -17,10 +17,19 @@ package org.apache.commons.attributes;
 
 /**
  * Thrown when one of the {@link Attributes}.getAttribute methods find more
- * than one instance of the specified attribute class.
+ * than one instance of the specified attribute class and the method
+ * only expected to find a single instance.
+ *
+ * @since 2.1
  */
 public class MultipleAttributesError extends Error {
     
+    /**
+     * Create a new MultipleAttributesError. 
+     *
+     * @param clazz the name of the attribute class of which multiple instances were found.
+     * @since 2.1    
+     */
     public MultipleAttributesError (String clazz) {
         super ("There was more than one attribute of class " + clazz + " associated with the element.");
     }
