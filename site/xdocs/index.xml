@@ -30,9 +30,19 @@
                 Commons Attributes enables Java programmers to use C#/.Net-style
                 attributes in their code.
             
-                Please see the tutorial and reference thorough explanation of the features
+                Please see the <a href="tutorial.html">tutorial</a> and 
+                <a href="reference.html">reference</a> for a thorough explanation of the features
                 and how the project integrates into the development process.
             </p>
+        </section>
+
+        <section name="News">
+            <p>Please see the <a href="changelog.html">change log</a> for summaries of code changes.</p>
+ 
+            <p><b>2004-07-12</b></p>
+            <ul>
+                <li><p>Attributes promoted out of sandbox to Commons proper.</p></li>
+            </ul>
         </section>
         
         <section name="Download and Installation">
@@ -72,7 +82,7 @@
                     <p>Ant task: <a href="http://cvs.apache.org/~leosutic/commons-attributes-compiler-SNAPSHOT.jar">commons-attributes-compiler-SNAPSHOT.jar</a></p>
                 </li>
                 <li>
-                    <p>Maven plugin: <a href="http://cvs.apache.org/~leosutic/commons-attributes-plugin-2.0alpha.jar">commons-attributes-plugin-2.0alpha.jar</a></p>
+                    <p>Maven plugin: <a href="http://cvs.apache.org/~leosutic/commons-attributes-plugin-2.1.jar">commons-attributes-plugin-2.1.jar</a></p>
                 </li>
             </ul>
             
@@ -236,7 +246,7 @@ public class MyClass {
                 </tr>
                 <tr>
                     <td>Runtime code size</td>
-                    <td>25kB</td>
+                    <td>36kB</td>
                 </tr>
                 <tr>
                     <td>Unit test coverage</td>

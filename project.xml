@@ -17,7 +17,7 @@
 =
 -->
 <project>
-    <extend>../sandbox-build/project.xml</extend>
+    <extend>../commons-build/project.xml</extend>
     <name>Attributes</name>
     <id>commons-attributes</id>
     
@@ -29,7 +29,7 @@
         <logo>http://jakarta.apache.org/images/jakarta-logo.gif</logo>
     </organization>
     
-    <currentVersion>2.0alpha</currentVersion>
+    <currentVersion>2.1</currentVersion>
     <inceptionYear>2003</inceptionYear>
     <shortDescription>Commons Attributes</shortDescription>
     <description>A package for handling runtime information about types (including Java classes)</description>
@@ -62,12 +62,12 @@
     <issueTrackingUrl>http://issues.apache.org/bugzilla/</issueTrackingUrl>
     
     <siteAddress>jakarta.apache.org</siteAddress>
-    <siteDirectory>/www/jakarta.apache.org/commons/sandbox/${pom.artifactId.substring(8)}/</siteDirectory>
-    <distributionDirectory>/www/jakarta.apache.org/builds/jakarta-commons-sandbox/${pom.artifactId.substring(8)}/</distributionDirectory>
+    <siteDirectory>/www/jakarta.apache.org/commons/${pom.artifactId.substring(8)}/</siteDirectory>
+    <distributionDirectory>/www/jakarta.apache.org/builds/jakarta-commons/${pom.artifactId.substring(8)}/</distributionDirectory>
     
     <repository>
-        <connection>scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-commons-sandbox/${pom.artifactId.substring(8)}</connection>
-        <url>http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/${pom.artifactId.substring(8)}/</url>
+        <connection>scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-commons/${pom.artifactId.substring(8)}</connection>
+        <url>http://cvs.apache.org/viewcvs/jakarta-commons/${pom.artifactId.substring(8)}/</url>
     </repository>
     
     <mailingLists>
@@ -151,6 +151,7 @@
                 <directory>${basedir}/../</directory>
                 <includes>
                     <include>LICENSE.txt</include>
+                    <include>NOTICE.txt</include>
                 </includes>
             </resource>
             <resource>

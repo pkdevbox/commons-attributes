@@ -17,22 +17,18 @@
 =
 -->
 <project>
-    <extend>${basedir}/../project.xml</extend>
-    
     <groupId>commons-attributes</groupId>
-    <id>commons-attributes-compiler</id>
+    <id>commons-attributes-mavendemo</id>
+    <name>Jakarta Commons Attributes - Maven Demo</name>
     
-    <name>Jakarta Commons Attributes Ant Tasks and Utilities</name>
-    <package>org.apache.commons.attributes.compiler</package>
-    
-    <shortDescription>Attribute Compiler</shortDescription>
+    <shortDescription>A demo of Commons Attributes for Maven users.</shortDescription>
     
     <description>
-        An Ant task that will precompile Java source.
+A demo of Commons Attributes for Maven users.
     </description>
     
     <build>
-        <unitTestSourceDirectory>${basedir}/src/test</unitTestSourceDirectory>
+        <sourceDirectory>${basedir}/src</sourceDirectory>
     </build>
     
     <dependencies>
@@ -46,17 +42,22 @@
             <id>xdoclet+xjavadoc</id>
             <version>1.0</version>
         </dependency>
-        
+
         <dependency>
-            <groupId>commons-attributes</groupId>
+            <id>commons-attributes</id>
             <artifactId>commons-attributes-api</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+        <dependency>
+            <id>commons-attributes</id>
+            <artifactId>commons-attributes-compiler</artifactId>
             <version>2.1</version>
         </dependency>
         
         <dependency>
-            <groupId>javadoc</groupId>
-            <artifactId>javadoc</artifactId>
-            <version>1.4</version>
+            <id>commons-collections</id>
+            <version>2.1</version>
         </dependency>
     </dependencies>
     

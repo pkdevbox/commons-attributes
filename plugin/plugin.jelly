@@ -53,13 +53,19 @@
 
     <preGoal name="java:compile"> 
         <j:if test="${sourcesPresent == 'true'}">
-            <attainGoal name="commons-attributes:compile"/>
+            <j:set var="caEnabled" value="${org.apache.commons.attributes.enable}"/>
+            <j:if test="${caEnabled == 'true'}">
+                <attainGoal name="commons-attributes:compile"/>
+            </j:if>            
         </j:if>
     </preGoal>
 
     <preGoal name="test:compile">
         <j:if test="${unitTestSourcesPresent == 'true'}">
-            <attainGoal name="commons-attributes:test-compile"/>
+            <j:set var="caEnabled" value="${org.apache.commons.attributes.enable}"/>
+            <j:if test="${caEnabled == 'true'}">
+                <attainGoal name="commons-attributes:test-compile"/>
+            </j:if>            
         </j:if>
     </preGoal>
 
@@ -86,10 +92,13 @@
         The maven.final.name variable is only set locally by the jar:snapshot
         goal, and thus all I see here is the projectname-version.jar name.
         -->
-        <ant:attribute-indexer baseName="${maven.build.dir}/${pom.artifactId}">
-            <classpath>
-                <path refid="maven.dependency.classpath"/>
-            </classpath>
-        </ant:attribute-indexer>
+        <j:set var="caIndexEnabled" value="${org.apache.commons.attributes.index.enable}"/>
+        <j:if test="${caIndexEnabled == 'true'}">
+            <ant:attribute-indexer baseName="${maven.build.dir}/${pom.artifactId}">
+                <classpath>
+                    <path refid="maven.dependency.classpath"/>
+                </classpath>
+            </ant:attribute-indexer>
+        </j:if>
     </postGoal>
 </project>

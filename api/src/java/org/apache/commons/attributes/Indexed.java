@@ -24,7 +24,7 @@ package org.apache.commons.attributes;
  *
  * <p><b>Note:</b> Indexed attributes that are inherited will not be found
  * via an {@link AttributeIndex}. You will only find the class/method/field where
- * the attribute is declared via the index.
+ * the attribute is actually declared via the index.
  */
 public class Indexed {
 }

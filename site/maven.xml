@@ -37,9 +37,13 @@
         <copy todir="${basedir}/target/docs" filtering="no">
             <fileset dir="${basedir}/etc/">
                 <include name="ant_demo/**"/>
-                <include name="maven_demo/**"/>
                 <exclude name="**/CVS/*"/>
             </fileset>
         </copy>
+        <zip destfile="${basedir}/target/docs/maven_demo.zip">
+            <fileset dir="${basedir}/etc/"
+                includes="maven_demo/maven.xml,maven_demo/project.*,maven_demo/src/**"
+                excludes="**/CVS/*"/>
+        </zip>
     </preGoal>
 </project>

@@ -68,6 +68,47 @@
             </ul>
             
         </section>
+        
+        <section name="Other Frameworks">
+            
+            <p><b>Q: How does Commons-Attributes compare to  other metadata frameworks, such as 
+                    JSR175, MetaClass, qDox, JAM, etc?</b></p>
+            
+            <p><b>A:</b> This is a two-part answer. First JSR175: When Java 5.0 becomes as commonly 
+                used as 1.3+1.4 is today, nobody will want to use any other metadata framework, just 
+                like nobody wants to use any other string class than the java.lang one. Therefore, by 
+                that time, C-A will have been rendered superfluous, and development will stop.</p>
+            
+            <p>Compared to JAM, QDox, etc. C-A stands up very well. It offers a simple API, powerful 
+                annotation features, type-safety and low overhead. Let's examine these points:</p>
+            
+            <ul>
+                <li>
+                    <p>Simple API: Too many frameworks try to be the all-encompassing &#xfc;ber-framework - 
+                        and usually fails at that. The result is an over-complicated API, that still 
+                        won't let you do what you want to do. C-A aims to do one thing, and do it well.</p>
+                </li>
+                <li>
+                    <p>Powerful annotation features: You can attach attributes to classes, methods, 
+                        fields, method parameters and return values. You can also control how an 
+                        attribute can be used via the <a href="api/org/apache/commons/attributes/Target.html"><tt>Target</tt></a>
+                        meta-attribute. Few other frameworks offer all these features.</p>
+                </li>
+                <li>
+                    <p>Type safety: Most other frameworks are limited to key-value pairs of Strings. 
+                        C-A lets you use JavaBeans, which gives you a layer of compile-time safety 
+                        against mistyping an attribute name.</p>
+                </li>
+                <li>
+                    <p>Low overhead: C-A has no runtime dependencies, and fits into a 36k jar file.</p>
+                </li>
+            </ul>
+            
+            <p>In summary, C-A stands up very well.</p>
+            
+        </section>
+        
+        
     </body>
     
 </document>
