@@ -24,7 +24,7 @@
     <shortDescription>A demo of Commons Attributes for Maven users.</shortDescription>
     
     <description>
-A demo of Commons Attributes for Maven users.
+        A demo of Commons Attributes for Maven users.
     </description>
     
     <build>
@@ -42,13 +42,13 @@ A demo of Commons Attributes for Maven users.
             <id>qdox</id>
             <version>1.5</version>
         </dependency>
-
+        
         <dependency>
             <id>commons-attributes</id>
             <artifactId>commons-attributes-api</artifactId>
             <version>2.1</version>
         </dependency>
-
+        
         <dependency>
             <id>commons-attributes</id>
             <artifactId>commons-attributes-compiler</artifactId>
