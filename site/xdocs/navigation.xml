@@ -20,10 +20,7 @@
     <body>
         <menu name="Commons&#xA0;Attributes">
             <item name="Overview" href="/index.html"/>
-            <item name="API" href="/api-2.1/index.html">
-                <item name="CVS" href="/api/index.html"/>
-                <item name="2.1" href="/api-2.1/index.html"/>
-            </item>
+            <item name="API" href="/api/index.html"/>
             <item name="Tutorial" href="/tutorial.html">
                 <item name="Ant Demo" href="/ant_demo.html"/>
                 <item name="Maven Demo" href="/maven_demo.html"/>

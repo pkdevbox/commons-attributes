@@ -30,7 +30,8 @@
                 Commons Attributes enables Java programmers to use C#/.Net-style
                 attributes in their code.
             
-                Please see the <a href="tutorial.html">tutorial</a> and <a href="reference.html">reference</a> for a thorough explanation of the features
+                Please see the <a href="tutorial.html">tutorial</a> and 
+                <a href="reference.html">reference</a> for a thorough explanation of the features
                 and how the project integrates into the development process.
             </p>
         </section>
