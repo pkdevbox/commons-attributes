@@ -164,6 +164,7 @@ the javadoc API classes into a Maven repository...
         
         <attainGoal name="clean"/>
         <attainGoal name="install"/>
+        <attainGoal name="install-plugin"/>
         <attainGoal name="site"/>
         
         <delete dir="${maven.dist.dir}"/>
@@ -184,6 +185,7 @@ the javadoc API classes into a Maven repository...
         Make binary distribution consisting of:
         
         + Compiler and API Jars.
+        + Maven plugin
         + Javadocs
         + LICENSE, NOTICE and RELEASE files
         
@@ -194,6 +196,8 @@ the javadoc API classes into a Maven repository...
                 includes="commons-attributes-api-${pom.currentVersion}.jar"/>
             <fileset dir="${basedir}/compiler/target/"
                 includes="commons-attributes-compiler-${pom.currentVersion}.jar"/>
+            <fileset dir="${basedir}/plugin/target/"
+                includes="commons-attributes-plugin-${pom.currentVersion}.jar"/>
             <fileset dir="${basedir}/site/target/docs/" includes="api/**"/>
             <fileset dir="${basedir}/" includes="LICENSE.txt,NOTICE.txt,RELEASE.txt"/>
         </copy>
@@ -223,7 +227,7 @@ the javadoc API classes into a Maven repository...
             
             <fileset dir="${basedir}/" includes="build.xml,maven.xml,project.xml,project.properties" excludes="**/CVS/**" />
             
-            <fileset dir="${basedir}/" includes="LICENSE.txt,NOTICE.txt,RELEASE.txt"/>
+            <fileset dir="${basedir}/" includes="LICENSE.txt,NOTICE.txt,RELEASE.txt,README.html"/>
         </copy>
         <!-- zip and tgz -->
         <zip destfile="${maven.dist.dir}/${maven.final.name}-src.zip">
