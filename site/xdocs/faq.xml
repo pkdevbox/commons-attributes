@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+=
+= Copyright 2003-2004 The Apache Software Foundation
+= 
+= Licensed under the Apache License, Version 2.0 (the "License");
+= you may not use this file except in compliance with the License.
+= You may obtain a copy of the License at
+= 
+=     http://www.apache.org/licenses/LICENSE-2.0
+= 
+= Unless required by applicable law or agreed to in writing, software
+= distributed under the License is distributed on an "AS IS" BASIS,
+= WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+= See the License for the specific language governing permissions and
+= limitations under the License.
+=
+-->
+<document>
+    
+    <properties>
+        <author email="commons-dev@jakarta.apache.org">Jakarta Commons Development Team</author>
+        <title>Frequently Asked Question</title>
+    </properties>
+    
+    <body>
+        <section name="Java 1.5 Annotations">
+            
+            <p><b>Q: How does Commons-Attributes fit in with the annotations in Java 1.5?</b></p>
+            
+            <p>
+                <b>A:</b> With annotations we'll finally have a standard API for metadata in Java. The downside
+                is that we have to switch to Java 1.5. Since people even now are still stuck with 
+                Java 1.2 and Java 1.3, it may be a while before a project can require 1.5 and still 
+                have a reasonably-sized audience and/or usefulness.
+            </p>
+            
+            <p>
+                This is where Commons-Attributes comes in.
+            </p>
+            
+            <p>
+                Ultimately this s a choice you must make based on your own preconditions, but this
+                is my advice: You should switch to 1.5 if you can, given stability, compatibility 
+                et cetera. After all, it is the standard that people will use when it becomes the standard
+                (which it will). However, if you foresee that you'll stick with 1.4 or earlier and you 
+                think that metadata is the most cost-effective way of solving your problem, then
+                you should definitely take a closer look at Commons-Attributes.
+            </p>
+        </section>
+        
+        <section name="Other Users">
+            
+            <p><b>Q: Anyone else using C-A?</b></p>
+            
+            <p>
+                <b>A:</b> A number of companies use C-A in their products, and I have myself used in 
+                deployed business-critical systems. Less anonymous users are:
+            </p>
+            
+            <ul>
+                <li>
+                    <p><a href="http://www.springframework.org/">Spring Framework</a></p>
+                </li>
+                <li>
+                    <p><a href="http://acegisecurity.sourceforge.net/">Acegi Security System for Spring</a></p>
+                </li>
+            </ul>
+            
+        </section>
+    </body>
+    
+</document>
