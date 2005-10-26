@@ -473,7 +473,6 @@ public class AttributeCompiler extends Task {
     public void execute () throws BuildException {
         destDir.mkdirs ();
         numGenerated = 0;
-        
         try {
             JavaDocBuilder builder = new JavaDocBuilder ();
             for (int i = 0; i < fileSets.size (); i++) {

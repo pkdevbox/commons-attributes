@@ -37,7 +37,8 @@
         <ant:mkdir dir="${maven.build.dir}/commons-attributes"/>
 
         <ant:attribute-compiler inMaven="true" sourcepathref="maven.compile.src.set"
-            destdir="${maven.build.dir}/commons-attributes"/>
+            destdir="${maven.build.dir}/commons-attributes"
+            attributepackages="${org.apache.commons.attributes.attributepackages}"/>
 
         <ant:path 
             id="jakarta.commons.attributes.generated.dir" 
@@ -70,7 +71,8 @@
         <ant:attribute-compiler 
             inMaven="true" 
             sourcepathref="maven.test.compile.src.set"
-            destdir="${maven.build.dir}/commons-attributes-unittest"/>
+            destdir="${maven.build.dir}/commons-attributes-unittest"
+            attributepackages="${org.apache.commons.attributes.attributepackages}"/>
 
         <ant:path 
             id="jakarta.commons.attributes.generated.dir.test" 

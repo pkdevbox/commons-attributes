@@ -118,6 +118,33 @@
             </p>
             
         </section>
+        
+        <section name="How Do I Use It With Maven?">
+            <p>
+                If you use Maven you can just install the Commons-Attributes plugin and add the following lines
+                to your project.properties:
+            </p>
+                
+                <source><![CDATA[######################################################################
+# Commons-Attributes
+######################################################################
+org.apache.commons.attributes.enable=true
+
+#
+# Optional, enables attribute indexing
+#
+org.apache.commons.attributes.index.enable=true
+
+#
+# Optional, equivalent to specifying attributepackages for the compiler
+#
+org.apache.commons.attributes.attributepackages=mypackage;myotherpackage]]></source>
+                
+                <p>
+                    Attribute compilation will happen automatically.
+                </p>
+        </section>
+        
     </body>
     
 </document>

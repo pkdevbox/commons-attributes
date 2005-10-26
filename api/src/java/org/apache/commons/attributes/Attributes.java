@@ -546,7 +546,7 @@ public class Attributes {
      * Tests if a class has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
      *
-     * @param class the class. May not be <code>null</code>.
+     * @param clazz the class. May not be <code>null</code>.
      * @param attributeClass the type of attribute. May be <code>null</code>, but this will not match anything.
      *
      * @since 2.1
@@ -572,7 +572,7 @@ public class Attributes {
      * Tests if a constructor has an attribute of a given type. That is, is there any attribute
      * <code>attr</code> such that <code>attr.getClass() == attributeClass</code>?
      *
-     * @param ctor the constructor. May not be <code>null</code>.
+     * @param constructor the constructor. May not be <code>null</code>.
      * @param attributeClass the type of attribute. May be <code>null</code>, but this will not match anything.
      *
      * @since 2.1

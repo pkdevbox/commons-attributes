@@ -24,6 +24,40 @@
     </properties>
     
     <body>
+        <section name="2005-10-26">
+            <ul>
+                <li>
+                    <p>
+                        Added support for attribute packages (<a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=31526">Bug 31526</a>):
+                    </p>
+                    
+                    <blockquote>
+                        <p>When the ant:attribute-compiler is used in ant, there is no way for maven to
+                            pass a value for the attributepackages property.</p>
+                        
+                        <p>It would be nice if it were possible to add a property in the project.properties
+                            of the current project that specifies the attributepackages. E.g.</p>
+                        
+                        <source><![CDATA[project.properties:
+[...]
+org.apache.commons.attributes.packages=my.package
+[...]]></source>
+                        
+                        <p>which is then used in the maven plugin:</p>
+                        
+                        <source><![CDATA[[...]
+<ant:attribute-compiler inMaven="true" sourcepathref="maven.compile.src.set"
+    attributepackages="${org.apache.commons.attributes.packages}"
+    destdir="${maven.build.dir}/commons-attributes"/>
+[...]]]></source>
+                        
+                    </blockquote>
+                    <p>And that is exactly what was implemented.</p>
+                </li>
+            </ul>
+        </section>
+        
+        
         <section name="2004-09-11">
             <ul>
                 <li>
@@ -31,7 +65,7 @@
                         <span style="color: #a00000; font-weight:bold;">BUG:</span> Checks for Target specifications would go unnoticed for attributes
                         attached to fields, methods and constructors. The following code would
                         <b>not</b> result in an <a href="api/org/apache/commons/attributes/InvalidAttributeTargetError.html">InvalidAttributeTargetError</a>.
-                    The bug is fixed in current CVS.
+                        The bug is fixed in current CVS.
                     </p>
                     
                     <source><![CDATA[/**
@@ -48,7 +82,7 @@ public class FieldAttributes1 {
                 </li>
             </ul>
         </section>
-  
+        
         <section name="2004-09-10">
             <ul>
                 <li>

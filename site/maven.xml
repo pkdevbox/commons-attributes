@@ -30,7 +30,8 @@
     </preGoal>
     
     <goal name="attributes:site">
-        <attainGoal name="site:generate"/>
+        <echo>---</echo>
+        <attainGoal name="xdoc:transform"/>
     </goal>
     
     <preGoal name="xdoc:copy-user-resources">
