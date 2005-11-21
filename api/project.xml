@@ -19,7 +19,7 @@
 <project>
     <extend>${basedir}/../project.xml</extend>
     <groupId>commons-attributes</groupId>
-    <id>commons-attributes-api</id>
+    <artifactId>commons-attributes-api</artifactId>
     <name>Jakarta Commons Attributes API</name>
     <package>org.apache.commons.attributes</package>
     
@@ -41,7 +41,8 @@
         </dependency>
         
         <dependency>
-            <id>qdox</id>
+            <groupId>qdox</groupId>
+            <artifactId>qdox</artifactId>
             <version>1.5</version>
         </dependency>   
     </dependencies>
