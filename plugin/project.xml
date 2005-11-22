@@ -19,7 +19,7 @@
 <project>
     <extend>${basedir}/../project.xml</extend>
     <pomVersion>3</pomVersion>
-    <id>commons-attributes-plugin</id>
+    <artifactId>commons-attributes-plugin</artifactId>
     <name>Commons Attributes Maven Plugin</name>
     
     <description>Commons Attributes Plugin for Maven</description>
@@ -47,7 +47,8 @@
         </dependency>
         
         <dependency>
-            <id>qdox</id>
+            <groupId>qdox</groupId>
+            <artifactId>qdox</artifactId>
             <version>1.5</version>
         </dependency>
     </dependencies>

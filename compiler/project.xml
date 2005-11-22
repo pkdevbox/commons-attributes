@@ -44,13 +44,15 @@
         
         <!--
         <dependency>
-            <id>xdoclet+xjavadoc</id>
+            <groupId>xdoclet</groupId>
+            <artifactId>xdoclet-xjavadoc</artifactId>
             <version>1.0</version>
         </dependency>
         -->        
 
         <dependency>
-            <id>qdox</id>
+            <groupId>qdox</groupId>
+            <artifactId>qdox</artifactId>
             <version>1.5</version>
         </dependency>
         

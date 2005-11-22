@@ -23,23 +23,27 @@
     <dependencies>
                
         <dependency>
-            <id>ant</id>
+            <groupId>ant</groupId>
+            <artifactId>ant</artifactId>
             <version>1.5</version>
         </dependency>
         <dependency>
-            <id>qdox</id>
+            <groupId>qdox</groupId>
+            <artifactId>qdox</artifactId>
             <version>1.1</version>
         </dependency>
         
         <!-- pre JDK 1.4 dependencies -->
         
         <dependency>
-            <id>xml-apis</id>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
             <version>1.0.b2</version>
             <url>http://xml.apache.org/xerces2-j/</url>
         </dependency>
         <dependency>
-            <id>xerces</id>
+            <groupId>xerces</groupId>
+            <artifactId>xerces</artifactId>
             <version>2.2.1</version>
             <url>http://xml.apache.org/xerces2-j/</url>
         </dependency>

@@ -18,7 +18,7 @@
 -->
 <project>
     <groupId>commons-attributes</groupId>
-    <id>commons-attributes-mavendemo</id>
+    <artifactId>commons-attributes-mavendemo</artifactId>
     <name>Jakarta Commons Attributes - Maven Demo</name>
     
     <shortDescription>A demo of Commons Attributes for Maven users.</shortDescription>
