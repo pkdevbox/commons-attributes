@@ -55,13 +55,13 @@
                         Dependencies are declared as you would expect in your project.xml:
                     </p>
                     <source><![CDATA[<dependency>
-    <id>commons-attributes</id>
+    <groupId>commons-attributes</groupId>
     <artifactId>commons-attributes-api</artifactId>
     <version>2.1</version>
 </dependency>
 
 <dependency>
-    <id>commons-attributes</id>
+    <groupId>commons-attributes</groupId>
     <artifactId>commons-attributes-compiler</artifactId>
     <version>2.1</version>
 </dependency>]]></source>
