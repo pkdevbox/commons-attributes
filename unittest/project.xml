@@ -56,7 +56,8 @@
         -->
         
         <dependency>
-            <id>qdox</id>
+            <groupId>qdox</groupId>
+            <artifactId>qdox</artifactId>
             <version>1.5</version>
         </dependency>       
         
