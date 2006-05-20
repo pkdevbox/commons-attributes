@@ -32,11 +32,15 @@
     </property>
     <property name="javadocdir" value="dist/docs/api">
     </property>
+    <property name="plugindir" value="plugin">
+    </property>
     <property name="version" value="2.2">
     </property>
     <property name="final.name.api" value="commons-attributes-api-${version}">
     </property>
     <property name="final.name.compiler" value="commons-attributes-compiler-${version}">
+    </property>
+    <property name="final.name.plugin" value="commons-attributes-plugin-${version}">
     </property>
     <target name="init" description="o Initializes some properties">
         <mkdir dir="${libdir}">
@@ -97,6 +101,8 @@
         <jar jarfile="target/${final.name.api}.jar" includes="org/apache/commons/attributes/*,LICENSE.txt,NOTICE.txt" basedir="${classesdir}">
         </jar>
         <jar jarfile="target/${final.name.compiler}.jar" excludes="org/apache/commons/attributes/*" includes="**/*" basedir="${classesdir}">
+        </jar>
+        <jar jarfile="target/${final.name.plugin}.jar" includes="**/*" excludes="manifest.mf" basedir="${plugindir}" manifest="${plugindir}/manifest.mf">
         </jar>
     </target>
     <target name="clean" description="o Clean up the generated directories">
