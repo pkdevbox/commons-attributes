@@ -18,6 +18,7 @@
 -->
 <project>
     <extend>../commons-build/project.xml</extend>
+    <pomVersion>3</pomVersion>
     <name>Attributes</name>
     <groupId>org.apache.commons</groupId>
     <artifactId>commons-attributes</artifactId>
