@@ -99,6 +99,15 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
     private final Class clazz;
     
     /**
+     * Synchronization lock for sealing the repository. We use this instead of
+     * synchronizing on the instance (this), since the sync:ing was added
+     * in 2.2 and we don't want to break any code.
+     * 
+     * @since 2.2
+     */
+    private final Object syncLock = new Object ();
+    
+    /**
      * Create a new runtime repository.
      *
      * @since 2.1
@@ -113,6 +122,7 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
      * @since 2.1
      */
     public void addClassAttribute (Object attribute) {
+        checkSealed ();
         classAttributes.add (attribute);
     }
     
@@ -124,8 +134,10 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
      * @since 2.1
      */
     private void checkSealed () throws IllegalStateException {
-        if (sealed) {
-            throw new IllegalStateException ("RuntimeAttributeRepository has been sealed.");
+        synchronized (syncLock) {
+            if (sealed) {
+                throw new IllegalStateException ("RuntimeAttributeRepository has been sealed.");
+            }
         }
     }
     
@@ -364,6 +376,8 @@ public class RuntimeAttributeRepository implements AttributeRepositoryClass {
      * @since 2.1
      */
     public void seal () {
-        sealed = true;
+        synchronized (syncLock) {
+            sealed = true;
+        }
     }
 }

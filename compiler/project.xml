@@ -40,14 +40,6 @@
             <artifactId>ant</artifactId>
             <version>1.5</version>
         </dependency>
-        
-        <!--
-        <dependency>
-            <groupId>xdoclet</groupId>
-            <artifactId>xdoclet-xjavadoc</artifactId>
-            <version>1.0</version>
-        </dependency>
-        -->        
 
         <dependency>
             <groupId>qdox</groupId>
@@ -58,15 +50,15 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-attributes-api</artifactId>
-            <version>2.2-SNAPSHOT</version>
+            <version>2.2</version>
         </dependency>
-        <!--
+
         <dependency>
             <groupId>javadoc</groupId>
             <artifactId>javadoc</artifactId>
             <version>1.4</version>
         </dependency>
--->
+
     </dependencies>
     
 </project>

@@ -24,6 +24,17 @@
     </properties>
     
     <body>
+        <section name="2006-06-29">
+            <ul>
+                <li>
+                    <p>
+                        Fixed a potential bug in RuntimeAttributeRepository - the seal() method and the
+                        checkSealed() method weren't synchronized properly.
+                    </p>
+                </li>
+            </ul>
+        </section>
+        
         <section name="2005-10-26">
             <ul>
                 <li>
