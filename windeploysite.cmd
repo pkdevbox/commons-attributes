@@ -3,8 +3,8 @@
 if "%1" == "" goto :HELP
 
 call maven attributes:windeploysite
-pscp target/site.zip %1@cvs.apache.org:__site.zip
-plink %1@cvs.apache.org "rm -rf /www/jakarta.apache.org/commons/attributes/*;unzip __site.zip -d /www/jakarta.apache.org/commons/attributes/;rm -f __site.zip"
+pscp target/site.zip %1@people.apache.org:__site.zip
+plink %1@people.apache.org "rm -rf /www/jakarta.apache.org/commons/attributes/*;unzip __site.zip -d /www/jakarta.apache.org/commons/attributes/;rm -f __site.zip"
 
 goto END
 
