@@ -39,7 +39,7 @@
             <ul>
                 <li>
                     <p>
-                        Added support for attribute packages (<a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=31526">Bug 31526</a>):
+                        Added support for attribute packages (<a href="http://issues.apache.org/jira/browse/ATTRIBUTES-4">Issue ATTRIBUTES-4</a>):
                     </p>
                     
                     <blockquote>
