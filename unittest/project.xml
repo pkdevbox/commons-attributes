@@ -18,7 +18,7 @@
 -->
 <project>
     <extend>${basedir}/../project.xml</extend>
-    <groupId>commons-attributes</groupId>
+    <groupId>org.apache.commons</groupId>
     <artifactId>commons-attributes-unittest</artifactId>
     <name>Jakarta Commons Attribute Compiler Unit Tests</name>
     <package>org.apache.commons.attributes</package>
@@ -48,13 +48,13 @@
         </dependency>       
         
         <dependency>
-            <groupId>commons-attributes</groupId>
+            <groupId>org.apache.commons</groupId>
             <artifactId>commons-attributes-compiler</artifactId>
             <version>2.2</version>
         </dependency>
         
         <dependency>
-            <groupId>commons-attributes</groupId>
+            <groupId>org.apache.commons</groupId>
             <artifactId>commons-attributes-api</artifactId>
             <version>2.2</version>
         </dependency>
