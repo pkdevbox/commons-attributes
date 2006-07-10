@@ -18,6 +18,11 @@
 <project name="Commons&#xA0;Attributes">
     <title>Commons&#xA0;Attributes</title>
     <body>
+        <links>
+            <item name="Jakarta Commons"
+                href="http://jakarta.apache.org/commons/"/>
+        </links>
+
         <menu name="Commons&#xA0;Attributes">
             <item name="Overview" href="/index.html"/>
             <item name="API" href="/api/index.html"/>
@@ -37,10 +42,11 @@
             <item name="FAQ" href="/faq.html"/>
             
             <item name="Changelog" href="/changelog.html"/>
+        </menu>
             
+        <menu name="Development">
             <item name="Mailing Lists" href="/mail-lists.html"/>
-            <item name="Developers" href="/team-list.html"/>
-            <item name="Issue Tracking" href="/issue-tracking.html"/>
+            <item name="Team" href="/team-list.html"/>
         </menu>
         &commons;
     </body>

@@ -87,6 +87,22 @@
         </mailingList>
     </mailingLists>    
     
+    <dependencies>
+        <dependency>
+            <groupId>maven</groupId>
+            <artifactId>maven-xdoc-plugin</artifactId>
+            <version>1.9.2</version>
+            <url>http://maven.apache.org/maven-1.x/reference/plugins/xdoc/</url>
+            <type>plugin</type>
+            <properties>
+                <comment>
+                    &lt;strong&gt;Site Only&lt;/strong&gt; - v1.9.2 (minimum)
+                </comment>
+                <optional>true</optional>
+            </properties>
+        </dependency>
+    </dependencies>
+  
     <build>
         
         <nagEmailAddress>commons-dev@jakarta.apache.org</nagEmailAddress>
