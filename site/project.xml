@@ -19,6 +19,7 @@
 <project>
     <extend>${basedir}/../project.xml</extend>
     <artifactId>commons-attributes</artifactId>
+    <name>Jakarta Commons Attributes Site</name>
     <package>org.apache.commons.attributes</package>
     
     <dependencies>
@@ -58,9 +59,7 @@
     </packageGroups>
     
     <reports>
-        <report>maven-changelog-plugin</report>
-        <report>maven-file-activity-plugin</report>
-        <report>maven-developer-activity-plugin</report>
+        <report>maven-license-plugin</report>
     </reports>
     
 </project>
