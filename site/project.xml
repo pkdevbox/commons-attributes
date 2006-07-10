@@ -18,6 +18,7 @@
 -->
 <project>
     <extend>${basedir}/../project.xml</extend>
+    <artifactId>commons-attributes</artifactId>
     <package>org.apache.commons.attributes</package>
     
     <dependencies>
@@ -26,11 +27,13 @@
             <groupId>ant</groupId>
             <artifactId>ant</artifactId>
             <version>1.5</version>
+            <url>http://ant.apache.org/</url>
         </dependency>
         <dependency>
             <groupId>qdox</groupId>
             <artifactId>qdox</artifactId>
-            <version>1.1</version>
+            <version>1.5</version>
+            <url>http://qdox.codehaus.org/</url>
         </dependency>
         
         <!-- pre JDK 1.4 dependencies -->
