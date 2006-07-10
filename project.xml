@@ -17,7 +17,6 @@
 =
 -->
 <project>
-    <extend>../commons-build/project.xml</extend>
     <pomVersion>3</pomVersion>
     <name>Attributes</name>
     <groupId>org.apache.commons</groupId>
@@ -35,6 +34,7 @@
     <inceptionYear>2003</inceptionYear>
     <shortDescription>Commons Attributes</shortDescription>
     <description>A package for handling runtime information about types (including Java classes)</description>
+    <url>http://jakarta.apache.org/commons/attributes/</url>
     
     <developers>
         <developer>
