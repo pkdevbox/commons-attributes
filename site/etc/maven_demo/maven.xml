@@ -46,21 +46,21 @@ In order to run the demo, execute:
     </goal>
     
     <goal name="install-plugin">
-        <get src="http://cvs.apache.org/~leosutic/commons-attributes-plugin-2.1.jar"
-            dest="${maven.home}/plugins/commons-attributes-plugin-2.1.jar"/>
+        <get src="http://cvs.apache.org/~leosutic/commons-attributes-plugin-2.2.jar"
+            dest="${maven.home}/plugins/commons-attributes-plugin-2.2.jar"/>
     </goal>
     
     <goal name="run">
-        <available property="antPluginPresent" file="${maven.home}/plugins/commons-attributes-plugin-2.1.jar"/>
+        <available property="antPluginPresent" file="${maven.home}/plugins/commons-attributes-plugin-2.2.jar"/>
         <fail unless="antPluginPresent"><![CDATA[
 Couldn't find the Commons-Attributes plugin at:
 
-    ${maven.home}/plugins/commons-attributes-plugin-2.1.jar
+    ${maven.home}/plugins/commons-attributes-plugin-2.2.jar
 
 Please install the plugin and try again. You can either manually 
 download the plugin from:
 
-    http://cvs.apache.org/~leosutic/commons-attributes-plugin-2.1.jar
+    http://cvs.apache.org/~leosutic/commons-attributes-plugin-2.2.jar
 
 and place it into your Maven plugins directory, or execute:
 

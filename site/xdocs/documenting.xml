@@ -46,7 +46,7 @@
             
             <source><![CDATA[javadoc 
     -J-Dorg.apache.commons.attributes.javadoc.CATaglet.sources=. 
-    -tagletpath commons-attributes-compiler-2.1.jar 
+    -tagletpath commons-attributes-compiler-2.2.jar
     -taglet org.apache.commons.attributes.javadoc.CATaglet 
     [source files]
 ]]></source>
@@ -76,7 +76,7 @@
                 
                 <source><![CDATA[javadoc 
     ]]><b><![CDATA[-J-Dorg.apache.commons.attributes.javadoc.CATaglet.sources=/home/leo/java]]></b><![CDATA[ 
-    -tagletpath commons-attributes-compiler-2.1.jar 
+    -tagletpath commons-attributes-compiler-2.2.jar
     -taglet org.apache.commons.attributes.javadoc.CATaglet 
     [source files]
 ]]></source>
@@ -94,7 +94,7 @@
                 
                 <source><![CDATA[javadoc 
     -J-Dorg.apache.commons.attributes.javadoc.CATaglet.sources=/home/leo/java
-    ]]><b><![CDATA[-tagletpath commons-attributes-compiler-2.1.jar]]></b><![CDATA[ 
+    ]]><b><![CDATA[-tagletpath commons-attributes-compiler-2.2.jar]]></b><![CDATA[
     -taglet org.apache.commons.attributes.javadoc.CATaglet 
     [source files]
 ]]></source>
@@ -112,7 +112,7 @@
                 
                 <source><![CDATA[javadoc 
     -J-Dorg.apache.commons.attributes.javadoc.CATaglet.sources=/home/leo/java
-    -tagletpath commons-attributes-compiler-2.1.jar
+    -tagletpath commons-attributes-compiler-2.2.jar
     ]]><b><![CDATA[-taglet org.apache.commons.attributes.javadoc.CATaglet]]></b><![CDATA[ 
     [source files]
 ]]></source>
@@ -133,7 +133,7 @@
     additionalparam="-J-Dorg.apache.commons.attributes.javadoc.CATaglet.sources=${basedir}">
     <taglet
         name="org.apache.commons.attributes.javadoc.CATaglet"
-        path="${ant.home}/lib/commons-attributes-compiler-2.1.jar"
+        path="${ant.home}/lib/commons-attributes-compiler-2.2.jar"
     />
     <fileset dir="${basedir}/" includes="**/*.java" />
 </javadoc>]]></source>
