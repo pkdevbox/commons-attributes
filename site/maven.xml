@@ -31,6 +31,7 @@
     
     <goal name="attributes:site">
         <echo>---</echo>
+        <attainGoal name="xdoc:generate-from-pom"/>
         <attainGoal name="xdoc:transform"/>
     </goal>
     
