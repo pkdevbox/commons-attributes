@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<!DOCTYPE org.apache.commons.menus SYSTEM '../../../../jakarta-commons/commons-build/menus/menus.dtd'>
+<!DOCTYPE org.apache.commons.menus SYSTEM 'http://jakarta.apache.org/commons/build/maven-build.dtd'>
 <project name="Commons&#xA0;Attributes">
     <title>Commons&#xA0;Attributes</title>
     <body>
@@ -42,6 +42,6 @@
             <item name="Developers" href="/team-list.html"/>
             <item name="Issue Tracking" href="/issue-tracking.html"/>
         </menu>
-        &common-menus;
+        &commons;
     </body>
 </project>
