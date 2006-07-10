@@ -129,7 +129,6 @@ the javadoc API classes into a Maven repository...
         <maven:reactor
             basedir="${basedir}"
             includes="*/project.xml"
-            excludes="site/*"
             goals="clean:clean"
             banner="Cleaning subproject:"
             ignoreFailures="false"/>
