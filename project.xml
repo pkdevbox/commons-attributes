@@ -19,7 +19,7 @@
 <project>
     <pomVersion>3</pomVersion>
     <name>Attributes</name>
-    <groupId>org.apache.commons</groupId>
+    <groupId>commons-attributes</groupId>
     <artifactId>commons-attributes</artifactId>
     
     <logo>/images/attributes-logo-white.png</logo>
