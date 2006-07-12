@@ -46,7 +46,7 @@ In order to run the demo, execute:
     </goal>
     
     <goal name="install-plugin">
-        <get src="http://cvs.apache.org/~leosutic/commons-attributes-plugin-2.2.jar"
+        <get src="http://www.apache.org/dist/java-repository/commons-attributes/plugins/commons-attributes-plugin-2.2.jar"
             dest="${maven.home}/plugins/commons-attributes-plugin-2.2.jar"/>
     </goal>
     
@@ -60,7 +60,7 @@ Couldn't find the Commons-Attributes plugin at:
 Please install the plugin and try again. You can either manually 
 download the plugin from:
 
-    http://cvs.apache.org/~leosutic/commons-attributes-plugin-2.2.jar
+    http://www.apache.org/dist/java-repository/commons-attributes/plugins/commons-attributes-plugin-2.2.jar
 
 and place it into your Maven plugins directory, or execute:
 

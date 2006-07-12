@@ -89,7 +89,7 @@
                     <p>Ant task: <a href="http://www.ibiblio.org/maven/commons-attributes/jars/commons-attributes-compiler-2.2.jar">commons-attributes-compiler-2.2.jar</a></p>
                 </li>
                 <li>
-                    <p>Maven plugin: <a href="http://cvs.apache.org/~leosutic/commons-attributes-plugin-2.2.jar">commons-attributes-plugin-2.2.jar</a></p>
+                    <p>Maven plugin: <a href="http://www.apache.org/dist/java-repository/commons-attributes/plugins/commons-attributes-plugin-2.2.jar">commons-attributes-plugin-2.2.jar</a></p>
                 </li>
             </ul>
             
