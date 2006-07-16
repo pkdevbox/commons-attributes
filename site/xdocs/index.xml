@@ -56,6 +56,10 @@
         </section>
         
         <section name="Download and Installation">
+
+            <subsection name="Full Distribution">
+                <p>You can download the full Commons Attributes distribution at <a href="http://jakarta.apache.org/site/downloads/downloads_commons-attributes.cgi">http://jakarta.apache.org/site/downloads/downloads_commons-attributes.cgi</a>. </p>
+            </subsection>
             
             <subsection name="Ant Users">
                 <p>
