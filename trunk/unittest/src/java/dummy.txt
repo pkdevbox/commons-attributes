@@ -1,3 +1,0 @@
-Maven requires a src/java/ directory, and CVS keeps deleting empty directories.
-
-So this file is here just to keep this directory from being pruned.
