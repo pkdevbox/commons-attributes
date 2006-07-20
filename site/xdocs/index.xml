@@ -39,9 +39,9 @@
         <section name="News">
             <p>Please see the <a href="changelog.html">change log</a> for summaries of code changes.</p>
 
-            <p><b>2006-07-07</b></p>
+            <p><b>2006-07-??</b></p>
             <ul>
-                <li><p><a href="commons-attributes-2.2-rc.zip">Attributes 2.2 release candidate</a> is up.</p></li>
+                <li><p>Attributes 2.2 is released (<a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/attributes/tags/CA_2_2/RELEASE.txt">release notes</a>)</p></li>
             </ul>
             
             <p><b>2004-08-15</b></p>
@@ -58,7 +58,7 @@
         <section name="Download and Installation">
 
             <subsection name="Full Distribution">
-                <p>You can download the full Commons Attributes distribution at <a href="http://jakarta.apache.org/site/downloads/downloads_commons-attributes.cgi">http://jakarta.apache.org/site/downloads/downloads_commons-attributes.cgi</a>. </p>
+                <p>You can download the full Commons Attributes distribution <a href="http://jakarta.apache.org/site/downloads/downloads_commons-attributes.cgi">here</a>. </p>
             </subsection>
             
             <subsection name="Ant Users">
