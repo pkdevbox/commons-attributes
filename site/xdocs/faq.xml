@@ -113,8 +113,10 @@
             <p><b>Q: What are the future plans for Commons-Attributes?</b></p>
             
             <p><b>A:</b> As indicated above, C-A isn't expected to live beyond widespread adoption
-                of Java 5.0. But until then, the main area of concern is ease of use. Included in that
-                are, in no particular order:</p>
+                of Java 5.0. With the 2.2 release it is considered to have approached its end of 
+		life, so there are no future plans. </p>
+
+	     <p>Prior to reaching end of life, the future plans were for ease of use and included: </p>
             
             <ul>
                 <li>
