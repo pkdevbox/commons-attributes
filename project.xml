@@ -30,7 +30,7 @@
         <logo>http://jakarta.apache.org/images/original-jakarta-logo.gif</logo>
     </organization>
     
-    <currentVersion>2.2</currentVersion>
+    <currentVersion>2.2-rc1</currentVersion>
     <inceptionYear>2003</inceptionYear>
     <shortDescription>Commons Attributes</shortDescription>
     <description>A package for handling runtime information about types (including Java classes)</description>
