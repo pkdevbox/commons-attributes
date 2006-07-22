@@ -204,11 +204,11 @@ the javadoc API classes into a Maven repository...
         </copy>
         <!-- zip and tar.gz -->
         <zip destfile="${maven.dist.dir}/${maven.final.name}.zip">
-            <fileset dir="${maven.dist.bin.assembly.dir}"/>
+            <fileset dir="${maven.dist.bin.archive.dir}"/>
         </zip>
         <tar destfile="${maven.dist.dir}/${maven.final.name}.tar.gz"
             compression="gzip"
-            basedir="${maven.dist.bin.assembly.dir}"/>
+            basedir="${maven.dist.bin.archive.dir}"/>
         
         <!--
         
@@ -232,11 +232,11 @@ the javadoc API classes into a Maven repository...
         </copy>
         <!-- zip and tar.gz -->
         <zip destfile="${maven.dist.dir}/${maven.final.name}-src.zip">
-            <fileset dir="${maven.dist.src.assembly.dir}"/>
+            <fileset dir="${maven.dist.src.archive.dir}"/>
         </zip>
         <tar destfile="${maven.dist.dir}/${maven.final.name}-src.tar.gz"
             compression="gzip"
-            basedir="${maven.dist.src.assembly.dir}"/>
+            basedir="${maven.dist.src.archive.dir}"/>
     </goal>
     
     <goal name="install-plugin">
