@@ -138,7 +138,7 @@ public class MyAttribute {
 }
 
 /**
- * Add a Myattribute with value 0.8.
+ * Add a MyAttribute with value 0.8.
  *
  * @@MyAttribute( 0.8 )
  */
