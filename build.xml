@@ -34,7 +34,7 @@
     </property>
     <property name="plugindir" value="plugin">
     </property>
-    <property name="version" value="2.2">
+    <property name="version" value="2.2-rc2">
     </property>
     <property name="final.name.api" value="commons-attributes-api-${version}">
     </property>
