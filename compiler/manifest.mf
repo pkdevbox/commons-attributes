@@ -9,7 +9,7 @@ Specification-Title: Attribute Compiler
 Specification-Vendor: The Apache Software Foundation
 Implementation-Title: org.apache.commons.attributes.compiler
 Implementation-Vendor: The Apache Software Foundation
-Implementation-Version: 2.2-rc2
+Implementation-Version: 2.2
 Extension-List: ant qdox commons-attributes-api javadoc
 ant-Extension-Name: ant
 ant-Implementation-Version: 1.5
