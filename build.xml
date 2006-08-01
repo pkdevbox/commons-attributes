@@ -99,9 +99,9 @@
         </copy>
     </target>
     <target name="jar" description="o Create the jar" depends="compile">
-        <jar jarfile="target/${final.name.api}.jar" includes="org/apache/commons/attributes/*,LICENSE.txt,NOTICE.txt" basedir="${classesdir}">
+        <jar jarfile="target/${final.name.api}.jar" includes="org/apache/commons/attributes/*,LICENSE.txt,NOTICE.txt,manifest.mf" basedir="${classesdir}" manifest="api/manifest.mf">
         </jar>
-        <jar jarfile="target/${final.name.compiler}.jar" excludes="org/apache/commons/attributes/*" includes="**/*" basedir="${classesdir}">
+        <jar jarfile="target/${final.name.compiler}.jar" excludes="org/apache/commons/attributes/*,manifest.mf" includes="**/*" basedir="${classesdir}" manifest="compiler/manifest.mf">
         </jar>
         <jar jarfile="target/${final.name.plugin}.jar" includes="**/*" excludes="manifest.mf" basedir="${plugindir}" manifest="${plugindir}/manifest.mf">
         </jar>
