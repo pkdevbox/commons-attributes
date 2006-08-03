@@ -39,7 +39,7 @@
         <section name="News">
             <p>Please see the <a href="changelog.html">change log</a> for summaries of code changes.</p>
 
-            <p><b>2006-07-??</b></p>
+            <p><b>2006-08-03</b></p>
             <ul>
                 <li><p>Attributes 2.2 is released (<a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/attributes/tags/CA_2_2/RELEASE.txt">release notes</a>)</p></li>
             </ul>
