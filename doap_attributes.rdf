@@ -20,6 +20,11 @@
     <release>
       <revision>
         <name>commons-attributes</name>
+        <created>2006-08-03</created>
+        <version>2.2</version>
+      </revision>
+      <revision>
+        <name>commons-attributes</name>
         <created>2004-08-15</created>
         <version>2.1</version>
       </revision>
