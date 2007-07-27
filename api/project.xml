@@ -21,10 +21,10 @@
     <extend>${basedir}/../project.xml</extend>
     <groupId>commons-attributes</groupId>
     <artifactId>commons-attributes-api</artifactId>
-    <name>Jakarta Commons Attributes API</name>
+    <name>Commons Attributes API</name>
     <package>org.apache.commons.attributes</package>
     
-    <shortDescription>Client API for Jakarta Commons Attributes.</shortDescription>
+    <shortDescription>Client API for Commons Attributes.</shortDescription>
     
     <description>
         A precompiler for java that enables the use of attributes as seen in C#.

@@ -21,7 +21,7 @@
     <extend>${basedir}/../project.xml</extend>
     <pomVersion>3</pomVersion>
     <artifactId>commons-attributes-plugin</artifactId>
-    <name>Jakarta Commons Attributes Maven Plugin</name>
+    <name>Commons Attributes Maven Plugin</name>
     
     <description>Commons Attributes Plugin for Maven</description>
     <shortDescription>Commons Attributes Plugin for Maven</shortDescription>
