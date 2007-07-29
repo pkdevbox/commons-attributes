@@ -21,11 +21,11 @@
     <extend>${basedir}/../project.xml</extend>
     <groupId>commons-attributes</groupId>
     <artifactId>commons-attributes-unittest</artifactId>
-    <name>Jakarta Commons Attribute Compiler Unit Tests</name>
+    <name>Commons Attribute Compiler Unit Tests</name>
     <package>org.apache.commons.attributes</package>
     
     <inceptionYear>2003</inceptionYear>
-    <shortDescription>Compiler for Jakarta Commons Attributes in Java.</shortDescription>
+    <shortDescription>Compiler for Commons Attributes in Java.</shortDescription>
     
     <description>
         A precompiler for java that enables the use of attributes as seen in C#.

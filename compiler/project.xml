@@ -22,7 +22,7 @@
     
     <artifactId>commons-attributes-compiler</artifactId>
     
-    <name>Jakarta Commons Attributes Ant Tasks and Utilities</name>
+    <name>Commons Attributes Ant Tasks and Utilities</name>
     <package>org.apache.commons.attributes.compiler</package>
     
     <shortDescription>Attribute Compiler</shortDescription>

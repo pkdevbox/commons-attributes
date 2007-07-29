@@ -20,7 +20,7 @@
 <project>
     <extend>${basedir}/../project.xml</extend>
     <artifactId>commons-attributes</artifactId>
-    <name>Jakarta Commons Attributes Site</name>
+    <name>Commons Attributes Site</name>
     <package>org.apache.commons.attributes</package>
     
     <dependencies>
