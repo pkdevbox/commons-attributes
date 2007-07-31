@@ -95,7 +95,7 @@ the javadoc API classes into a Maven repository...
     </goal>
     
     <goal name="install" 
-        description="Build and install the Jakarta Commons Attributes jars." >
+        description="Build and install the Apache Commons Attributes jars." >
         <attainGoal name="attributes:install-javadoc-1.4"/>
         <maven:reactor
             basedir="${basedir}"
@@ -106,7 +106,7 @@ the javadoc API classes into a Maven repository...
     </goal>
     
     <goal name="install-snapshot" 
-        description="Build and install the Jakarta Commons Attributes jars." >
+        description="Build and install the Apache Commons Attributes jars." >
         <attainGoal name="attributes:install-javadoc-1.4"/>
         <maven:reactor
             basedir="${basedir}"
@@ -256,7 +256,7 @@ the javadoc API classes into a Maven repository...
             value="Copyright &amp;copy; ${year} ${pom.organization.name}. All Rights Reserved." />
         <property name="title" value="Commons-${pom.name} ${pom.currentVersion} API"/>
         <javadoc destdir="${basedir}/target/docs/api" 
-            doctitle="&lt;h1&gt;Jakarta Commons Attributes 2.2&lt;/h1&gt;" 
+            doctitle="&lt;h1&gt;Apache Commons Attributes 2.2&lt;/h1&gt;" 
             noindex="false" author="true" use="true"
             windowtitle="${title}" 
             bottom="${copyright}"

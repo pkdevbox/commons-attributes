@@ -132,7 +132,7 @@
         </tstamp>
         <property name="copyright" value="Copyright &amp;copy;  Apache Software Foundation. All Rights Reserved.">
         </property>
-        <property name="title" value="Jakarta Commons Attribute Compiler API ${version} API">
+        <property name="title" value="Apache Commons Attribute Compiler API ${version} API">
         </property>
         <javadoc use="true" private="true" destdir="${javadocdir}" author="true" version="true" sourcepath="api/src/java" packagenames="org.apache.commons.attributes.*">
             <classpath>

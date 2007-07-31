@@ -20,7 +20,7 @@
 <document>
 
     <properties>
-        <author email="dev@commons.apache.org">Jakarta Commons Development Team</author>
+        <author email="dev@commons.apache.org">Apache Commons Development Team</author>
         <title>Overview</title>
     </properties>
 
@@ -42,7 +42,7 @@
 
             <p><b>2006-08-03</b></p>
             <ul>
-                <li><p>Attributes 2.2 is released (<a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/attributes/tags/CA_2_2/RELEASE_NOTES.txt">release notes</a>)</p></li>
+                <li><p>Attributes 2.2 is released (<a href="http://svn.apache.org/repos/asf/commons/proper/attributes/tags/CA_2_2/RELEASE_NOTES.txt">release notes</a>)</p></li>
             </ul>
             
             <p><b>2004-08-15</b></p>
