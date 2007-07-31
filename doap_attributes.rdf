@@ -13,8 +13,8 @@
     <description xml:lang="en">A package for handling runtime information about types (including Java classes)</description>
     <repository>
       <SVNRepository>
-        <browse rdf:resource="http://svn.apache.org/repos/asf/jakarta/commons/proper/attributes/trunk"/>
-        <location rdf:resource="http://svn.apache.org/repos/asf/jakarta/commons/proper/attributes"/>
+        <browse rdf:resource="http://svn.apache.org/repos/asf/commons/proper/attributes/trunk"/>
+        <location rdf:resource="http://svn.apache.org/repos/asf/commons/proper/attributes"/>
       </SVNRepository>
     </repository>
     <release>
