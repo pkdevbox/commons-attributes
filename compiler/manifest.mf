@@ -13,20 +13,16 @@ Implementation-Version: 2.2
 Extension-List: ant qdox commons-attributes-api javadoc
 ant-Extension-Name: ant
 ant-Implementation-Version: 1.5
-ant-Implementation-URL: http://www.ibiblio.org/maven/ant/jars/ant-1.5.
- jar
+ant-Implementation-URL: http://www.ibiblio.org/maven/ant/jars/ant-1.5.jar
 qdox-Extension-Name: qdox
 qdox-Implementation-Version: 1.5
-qdox-Implementation-URL: http://www.ibiblio.org/maven/qdox/jars/qdox-1
- .5.jar
+qdox-Implementation-URL: http://www.ibiblio.org/maven/qdox/jars/qdox-1.5.jar
 commons-attributes-api-Extension-Name: commons-attributes-api
 commons-attributes-api-Implementation-Version: 2.2
-commons-attributes-api-Implementation-URL: http://www.ibiblio.org/mave
- n/commons-attributes/jars/commons-attributes-api-2.2.jar
+commons-attributes-api-Implementation-URL: http://www.ibiblio.org/maven/commons-attributes/jars/commons-attributes-api-2.2.jar
 javadoc-Extension-Name: javadoc
 javadoc-Implementation-Version: 1.4
-javadoc-Implementation-URL: http://www.ibiblio.org/maven/javadoc/jars/
- javadoc-1.4.jar
+javadoc-Implementation-URL: http://www.ibiblio.org/maven/javadoc/jars/javadoc-1.4.jar
 Implementation-Vendor-Id: org.apache
 X-Compile-Source-JDK: 1.4
 X-Compile-Target-JDK: 1.4

@@ -13,12 +13,10 @@ Implementation-Version: 2.2
 Extension-List: ant qdox
 ant-Extension-Name: ant
 ant-Implementation-Version: 1.5
-ant-Implementation-URL: http://www.ibiblio.org/maven/ant/jars/ant-1.5.
- jar
+ant-Implementation-URL: http://www.ibiblio.org/maven/ant/jars/ant-1.5.jar
 qdox-Extension-Name: qdox
 qdox-Implementation-Version: 1.5
-qdox-Implementation-URL: http://www.ibiblio.org/maven/qdox/jars/qdox-1
- .5.jar
+qdox-Implementation-URL: http://www.ibiblio.org/maven/qdox/jars/qdox-1.5.jar
 Implementation-Vendor-Id: org.apache
 X-Compile-Source-JDK: 1.4
 X-Compile-Target-JDK: 1.4
