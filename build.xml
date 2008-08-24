@@ -70,7 +70,7 @@
             </classpath>
         </javac>
         <copy todir="${classesdir}">
-            <fileset dir="api/src/java">
+            <fileset dir="compiler/src/java">
                 <include name="**/*.dtd">
                 </include>
                 <include name="**/*.properties">
