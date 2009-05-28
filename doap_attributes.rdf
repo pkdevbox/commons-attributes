@@ -18,16 +18,16 @@
       </SVNRepository>
     </repository>
     <release>
-      <revision>
+      <Version>
         <name>commons-attributes</name>
         <created>2006-08-03</created>
-        <version>2.2</version>
-      </revision>
-      <revision>
+        <revision>2.2</revision>
+      </Version>
+      <Version>
         <name>commons-attributes</name>
         <created>2004-08-15</created>
-        <version>2.1</version>
-      </revision>
+        <revision>2.1</revision>
+      </Version>
     </release>
     <mailing-list rdf:resource="http://commons.apache.org/mail-lists.html"/>
   </Project>
