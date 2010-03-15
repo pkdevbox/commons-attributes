@@ -26,7 +26,7 @@
 
         <menu name="Commons&#xA0;Attributes">
             <item name="Overview" href="/index.html"/>
-            <item name="Download" href="http://commons.apache.org/downloads/download_attributes.cgi"/>
+            <item name="Download" href="http://commons.apache.org/attributes/download_attributes.cgi"/>
             <item name="API" href="/api/index.html"/>
             <item name="Tutorial" href="/tutorial.html">
                 <item name="Ant Demo" href="/ant_demo.html"/>
