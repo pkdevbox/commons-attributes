@@ -7,7 +7,7 @@
     <category rdf:resource="http://projects.apache.org/category/library"/>
     <license rdf:resource="http://usefulinc.com/doap/licenses/asl20"/>
     <bug-database rdf:resource="http://issues.apache.org/jira/browse/ATTRIBUTES"/>
-    <download-page rdf:resource="http://jakarta.apache.org/site/downloads/downloads_commons-attributes.cgi"/>
+    <download-page rdf:resource="http://commons.apache.org/attributes/download_attributes.cgi"/>
     <asfext:pmc rdf:resource="http://commons.apache.org/"/>
     <shortdesc xml:lang="en">Commons Attributes</shortdesc>
     <description xml:lang="en">A package for handling runtime information about types (including Java classes)</description>
